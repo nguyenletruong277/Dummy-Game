@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://lrt0px2qeorw"]
+
+[ext_resource type="Texture2D" uid="uid://bujgx2qkc4jdo" path="res://assets/map_elements/garden/fen7.PNG" id="1_a8ycg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_euelv"]
+size = Vector2(6, 158)
+
+[node name="StaticFen1" type="StaticBody2D" unique_id=1419432170]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=304411259]
+position = Vector2(522, 250)
+texture = ExtResource("1_a8ycg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=385297565]
+position = Vector2(522, 250)
+shape = SubResource("RectangleShape2D_euelv")

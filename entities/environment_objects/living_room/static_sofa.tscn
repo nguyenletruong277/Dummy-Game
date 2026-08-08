@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cbeits0rrywq7"]
+
+[ext_resource type="Texture2D" uid="uid://cpyvece6qute8" path="res://assets/map_elements/livingRoom/sofa.png" id="1_ns1po"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0ovq"]
+size = Vector2(100, 17)
+
+[node name="StaticSofa" type="StaticBody2D" unique_id=1783520488]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2034565815]
+position = Vector2(385, 175)
+texture = ExtResource("1_ns1po")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985162760]
+position = Vector2(388, 178.5)
+shape = SubResource("RectangleShape2D_f0ovq")

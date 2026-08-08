@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ckqmgoqfaq273"]
+
+[ext_resource type="Texture2D" uid="uid://umd8nwwpew4o" path="res://assets/map_elements/cinema/speaker.png" id="1_k0vy0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y6r5c"]
+radius = 11.045361
+
+[node name="StaticSpeaker" type="StaticBody2D" unique_id=1783520488]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2034565815]
+position = Vector2(385, 175)
+texture = ExtResource("1_k0vy0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985162760]
+position = Vector2(386, 177)
+shape = SubResource("CircleShape2D_y6r5c")

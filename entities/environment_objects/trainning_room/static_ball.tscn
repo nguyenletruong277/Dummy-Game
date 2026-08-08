@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cpc0ogxht64uu"]
+
+[ext_resource type="Texture2D" uid="uid://cm6sn6wer2keq" path="res://assets/map_elements/trainingRoom/ball.png" id="1_fw28p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1y7st"]
+
+[node name="StaticBall" type="StaticBody2D" unique_id=1419432170]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=304411259]
+position = Vector2(522, 250)
+texture = ExtResource("1_fw28p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=385297565]
+position = Vector2(522, 250)
+shape = SubResource("CircleShape2D_1y7st")
