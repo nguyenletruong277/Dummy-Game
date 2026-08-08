@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bv2lx1pc13cx" path="res://scenes/toilet/toilet.tscn" id="7_pjdlk"]
 [ext_resource type="PackedScene" uid="uid://ckxcf6u30v64w" path="res://scenes/cinema/cinema.tscn" id="8_woj7t"]
 
-[node name="Node2D" type="Node2D" unique_id=1827093526]
+[node name="Gameplay" type="Node2D" unique_id=1827093526]
 
 [node name="MasterRoom" parent="." unique_id=1490007623 instance=ExtResource("1_mlj4r")]
 position = Vector2(112, 440)

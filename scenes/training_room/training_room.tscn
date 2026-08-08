@@ -35,7 +35,7 @@ sources/0 = SubResource("TileSetAtlasSource_mnno2")
 
 [node name="TrainingRoom" type="Node2D" unique_id=1968638597]
 
-[node name="Background" type="TileMapLayer" parent="." unique_id=1181238115]
+[node name="Floor" type="TileMapLayer" parent="." unique_id=1181238115]
 scale = Vector2(3.1039717, 2.2387054)
 tile_map_data = PackedByteArray("AAAIAAUAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_gx3r7")

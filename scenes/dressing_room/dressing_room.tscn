@@ -152,7 +152,7 @@ sources/9 = SubResource("TileSetAtlasSource_6ilpk")
 
 [node name="DressingRoom" type="Node2D" unique_id=287308479]
 
-[node name="Background" type="TileMapLayer" parent="." unique_id=1872249376]
+[node name="Floor" type="TileMapLayer" parent="." unique_id=1872249376]
 position = Vector2(-21.000002, 0)
 scale = Vector2(3.5296612, 2.367804)
 tile_map_data = PackedByteArray("AAAGAAUAAAAAAAAAAAA=")

@@ -35,7 +35,7 @@ sources/0 = SubResource("TileSetAtlasSource_7wsgf")
 
 [node name="Kitchen" type="Node2D" unique_id=1633826754]
 
-[node name="Background" type="TileMapLayer" parent="." unique_id=1638508196]
+[node name="Floor" type="TileMapLayer" parent="." unique_id=1638508196]
 position = Vector2(1.9073486e-06, 8)
 scale = Vector2(4.6507397, 3.1418629)
 tile_map_data = PackedByteArray("AAAHAAUAAAAAAAAAAAA=")

@@ -12,6 +12,6 @@ sources/0 = SubResource("TileSetAtlasSource_gjasj")
 
 [node name="MasterRoom" type="Node2D" unique_id=1490007623]
 
-[node name="Background" type="TileMapLayer" parent="." unique_id=367714100]
+[node name="Floor" type="TileMapLayer" parent="." unique_id=367714100]
 tile_map_data = PackedByteArray(0, 0, 7, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_gx3r7")
