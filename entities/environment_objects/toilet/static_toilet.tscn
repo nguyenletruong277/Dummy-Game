@@ -3,16 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://baabnni37s4sg" path="res://assets/map_elements/toilet/toilet.png" id="1_lap4e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1y7st"]
-radius = 15.297058
+radius = 20.024984
 
 [node name="StaticToilet" type="StaticBody2D" unique_id=1419432170]
 y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=304411259]
-position = Vector2(522, 250)
+scale = Vector2(2, 2)
 texture = ExtResource("1_lap4e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=385297565]
-position = Vector2(533, 250)
+position = Vector2(20, 34)
 shape = SubResource("CircleShape2D_1y7st")

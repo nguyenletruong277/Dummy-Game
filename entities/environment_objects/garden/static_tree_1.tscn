@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ealr"]
 radius = 17.029387
 
-[node name="Tree2" type="StaticBody2D" unique_id=1419432170]
+[node name="StaticTree1" type="StaticBody2D" unique_id=1419432170]
 y_sort_enabled = true
 collision_mask = 0
 

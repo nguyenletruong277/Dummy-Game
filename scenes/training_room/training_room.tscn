@@ -2,6 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://moga6d6cou80" path="res://assets/map_elements/trainingRoom/ground.png" id="1_gejih"]
 [ext_resource type="Texture2D" uid="uid://cr7kufr1i8yu7" path="res://assets/map_elements/sprites/wall/outside/outside3.PNG" id="1_qp4g4"]
+[ext_resource type="PackedScene" uid="uid://cpc0ogxht64uu" path="res://entities/environment_objects/trainning_room/static_ball.tscn" id="3_2qqji"]
+[ext_resource type="PackedScene" uid="uid://c1avqvomodcmx" path="res://entities/environment_objects/trainning_room/static_chair.tscn" id="4_2ue2f"]
+[ext_resource type="PackedScene" uid="uid://cccrfkfwn4rb2" path="res://entities/environment_objects/trainning_room/static_dubbell.tscn" id="5_qm5xa"]
+[ext_resource type="PackedScene" uid="uid://d2im6exmdwybl" path="res://entities/environment_objects/trainning_room/static_yoga.tscn" id="6_xtfkr"]
+[ext_resource type="PackedScene" uid="uid://ciqpb1mu0ihts" path="res://entities/environment_objects/garden/static_tree_1.tscn" id="7_b2pgk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_olgqk"]
 texture = ExtResource("1_gejih")
@@ -44,3 +49,23 @@ tile_set = SubResource("TileSet_gx3r7")
 scale = Vector2(0.99999994, 0.99999994)
 tile_map_data = PackedByteArray("AAADAP//AAAGAAAAAAAEAP//AAAGAAAAAAAFAP//AAAGAAAAAAAGAP//AAAGAAAAAAAHAP//AAAGAAAAAAAIAP//AAAGAAAAAAAJAP//AAAGAAAAAAAKAP//AAAGAAAAAAALAP//AAAGAAAAAAAMAP//AAAGAAAAAAANAP//AAAGAAAAAAAOAP//AAAGAAAAAAAPAP//AAAGAAAAAAAQAP//AAAGAAAAAAARAP//AAAGAAAAAAASAP//AAAGAAAAAAATAP//AAAGAAAAAAAUAP//AAAGAAAAAAAVAP//AAAGAAAAAAAWAP//AAAGAAAAAAAXAP//AAAGAAAAAAAYAP//AAAGAAAAAAAZAP//AAAGAAAAAAAaAP//AAAGAAAAAAAbAP//AAAGAAAAAAAcAP//AAAGAAAAAAAdAP//AAAGAAAAAAAeAP//AAAGAAAAAAAfAP//AAAGAAAAAAAgAP//AAAGAAAAAAAhAP//AAAGAAAAAAAiAP//AAAGAAAAAAAjAP//AAAGAAAAAAAkAP//AAAGAAAAAAAlAP//AAAGAAAAAAAmAP//AAAGAAAAAAAnAP//AAAGAAAAAAAoAP//AAAGAAAAAAApAP//AAAGAAAAAAAqAP//AAAGAAAAAAArAP//AAAGAAAAAAAsAP//AAAGAAAAAAAtAP//AAAGAAAAAAAuAP//AAAGAAAAAAAvAP//AAAGAAAAAAAAAP//AAACAAAAAAAAAAMAAAACAAUAAAAAAAQAAAACAAUAAAAAAAUAAAACAAUAAAAAAAYAAAACAAUAAAAAAAcAAAACAAUAAAAAAAgAAAACAAUAAAAAAAkAAAACAAUAAAAAAAoAAAACAAUAAAAAAAsAAAACAAUAAAAAAAwAAAACAAUAAAAAAA0AAAACAAUAAAAAAA4AAAACAAUAAAAAAA8AAAACAAUAAAAAABAAAAACAAUAAAAAABEAAAACAAUAAAAAABIAAAACAAUAAAAAABMAAAACAAUAAAAAABQAAAACAAUAAAAAABUAAAACAAUAAAAAABYAAAACAAUAAAAAABkAAAACAAUAAAAyAP//AAACAAAAABAyAAIAAAACAAUAABAyAAMAAAACAAUAABAyAAQAAAACAAUAABAyAAUAAAACAAUAABAyAAYAAAACAAUAABAyAAcAAAACAAUAABAyAAgAAAACAAUAABAyAAkAAAACAAUAABAyAAoAAAACAAUAABAyAAsAAAACAAUAABAyAAwAAAACAAUAABAyAA0AAAACAAUAABAyAA4AAAACAAUAABAyAA8AAAACAAUAABAyABAAAAACAAUAABAyABEAAAACAAUAABAyABIAAAACAAUAABAyABMAAAACAAUAABAyABQAAAACAAUAABAyABUAAAACAAUAABAyABYAAAACAAUAABAyABcAAAACAAUAABAyABgAAAACAAUAABADABoAAAAGAAAAAAAEABoAAAAGAAAAAAAFABoAAAAGAAAAAAAGABoAAAAGAAAAAAAHABoAAAAGAAAAAAAIABoAAAAGAAAAAAAJABoAAAAGAAAAAAAKABoAAAAGAAAAAAALABoAAAAGAAAAAAAMABoAAAAGAAAAAAANABoAAAAGAAAAAAAOABoAAAAGAAAAAAAPABoAAAAGAAAAAAAQABoAAAAGAAAAAAARABoAAAAGAAAAAAASABoAAAAGAAAAAAATABoAAAAGAAAAAAAUABoAAAAGAAAAAAAVABoAAAAGAAAAAAAWABoAAAAGAAAAAAAXABoAAAAGAAAAAAAYABoAAAAGAAAAAAAZABoAAAAGAAAAAAAaABoAAAAGAAAAAAAbABoAAAAGAAAAAAAcABoAAAAGAAAAAAAdABoAAAAGAAAAAAAeABoAAAAGAAAAAAAfABoAAAAGAAAAAAAgABoAAAAGAAAAAAAhABoAAAAGAAAAAAAiABoAAAAGAAAAAAAjABoAAAAGAAAAAAAyABkAAAACAAgAABAAABsAAAACAAgAAAA=")
 tile_set = SubResource("TileSet_qp4g4")
+
+[node name="EnvironmentObjects" type="Node2D" parent="." unique_id=1839562031]
+
+[node name="StaticBall" parent="EnvironmentObjects" unique_id=1419432170 instance=ExtResource("3_2qqji")]
+position = Vector2(212, 346)
+
+[node name="StaticChair" parent="EnvironmentObjects" unique_id=41069316 instance=ExtResource("4_2ue2f")]
+position = Vector2(427, 259)
+
+[node name="StaticDumbbell" parent="EnvironmentObjects" unique_id=388647400 instance=ExtResource("5_qm5xa")]
+position = Vector2(174, 214)
+
+[node name="StaticYoga" parent="EnvironmentObjects" unique_id=2019932029 instance=ExtResource("6_xtfkr")]
+position = Vector2(627, 126)
+
+[node name="StaticTree1" parent="EnvironmentObjects" unique_id=1609513638 instance=ExtResource("7_b2pgk")]
+position = Vector2(156, 35)
+
+[node name="StaticTree2" parent="EnvironmentObjects" unique_id=628075704 instance=ExtResource("7_b2pgk")]
+position = Vector2(708, 245)

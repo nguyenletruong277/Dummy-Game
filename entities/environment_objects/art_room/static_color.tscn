@@ -3,15 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://cw65in7ryw1gq" path="res://assets/map_elements/artRoom/colors.png" id="1_33f30"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u27w8"]
-radius = 15.132746
+radius = 21.587032
 
 [node name="StaticColor" type="StaticBody2D" unique_id=1783520488]
 y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2034565815]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_33f30")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985162760]
-position = Vector2(-2, 0)
+position = Vector2(-3, 30)
 shape = SubResource("CircleShape2D_u27w8")

@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dycnhtjb0k62m" path="res://assets/map_elements/artRoom/ground.png" id="1_x6yd6"]
 [ext_resource type="Texture2D" uid="uid://ps2dsvulffpn" path="res://assets/map_elements/sprites/wall/outside/outside6.PNG" id="3_2epca"]
+[ext_resource type="PackedScene" uid="uid://budy7w2756o64" path="res://entities/environment_objects/art_room/static_color.tscn" id="3_04ggw"]
+[ext_resource type="PackedScene" uid="uid://864hxh87ieaf" path="res://entities/environment_objects/art_room/static_chair.tscn" id="3_sorkr"]
+[ext_resource type="PackedScene" uid="uid://djra6btn3d4t5" path="res://entities/environment_objects/art_room/static_picture.tscn" id="4_2epca"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5ejv"]
 texture = ExtResource("1_x6yd6")
@@ -45,3 +48,15 @@ tile_set = SubResource("TileSet_n8gdj")
 scale = Vector2(1.0029039, 1)
 tile_map_data = PackedByteArray("AAAEABkACAADAAUAAAAMABkACAADAAUAAAAUABkACAADAAUAAAAbABkAAAADAAIAAAAgAAgAAQAFAAIAAAAgAA8ACAAHAAEAAAAgABQACAAHAAEAAAD//xQACAAHAAEAABD//w0AAQAFAAIAAAD//wYAAQAFAAIAAAAgABkACAAHAAUAAAAgABAACAAHAAEAAAAgAAsACAAHAAEAAAAgAAoACAAHAAEAAAAgAAYACAAHAAEAAAAcABkACAADAAUAAAAYABkACAADAAUAAAAQABkACAADAAUAAAAIABkACAADAAUAAAD//xkACAAHAAUAABADABkACAADAAUAAAD//xAACAAHAAEAABD//wwACAAHAAEAABD//wsACAAHAAEAABD//wcACAAHAAEAABD//wQACAAHAAEAABAgAAQACAAHAAEAAAAgAAEACAAHAAEAAAD//wEACAAHAAEAABADAAEACAADAAUAAAAEAAEACAADAAUAAAAFAAEACAADAAUAAAAGAAEACAADAAUAAAAHAAEACAADAAUAAAAIAAEACAADAAUAAAAJAAEACAADAAUAAAAKAAEACAADAAUAAAALAAEACAADAAUAAAAMAAEACAADAAUAAAANAAEACAADAAUAAAAOAAEACAADAAUAAAAPAAEACAADAAUAAAAQAAEACAADAAUAAAARAAEACAADAAUAAAASAAEACAADAAUAAAATAAEACAADAAUAAAAUAAEACAADAAUAAAAVAAEACAADAAUAAAAWAAEACAADAAUAAAAXAAEACAADAAUAAAA=")
 tile_set = SubResource("TileSet_gx3r7")
+
+[node name="EnvironmentObjects" type="Node2D" parent="." unique_id=1534180147]
+y_sort_enabled = true
+
+[node name="StaticColor" parent="EnvironmentObjects" unique_id=1783520488 instance=ExtResource("3_04ggw")]
+position = Vector2(371, 233)
+
+[node name="StaticChair" parent="EnvironmentObjects" unique_id=1121549948 instance=ExtResource("3_sorkr")]
+position = Vector2(266, 298)
+
+[node name="StaticPicture" parent="EnvironmentObjects" unique_id=1350829218 instance=ExtResource("4_2epca")]
+position = Vector2(91, 200)

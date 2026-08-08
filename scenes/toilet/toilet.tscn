@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://x5jml5li0syw" path="res://assets/map_elements/toilet/ground.png" id="1_08ccm"]
 [ext_resource type="Texture2D" uid="uid://ps2dsvulffpn" path="res://assets/map_elements/sprites/wall/outside/outside6.PNG" id="2_0p5uh"]
+[ext_resource type="PackedScene" uid="uid://xcegd4ykin4i" path="res://entities/environment_objects/toilet/static_toilet.tscn" id="3_k3o24"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3o24"]
 texture = ExtResource("1_08ccm")
@@ -43,3 +44,8 @@ tile_set = SubResource("TileSet_gx3r7")
 [node name="Wall" type="TileMapLayer" parent="." unique_id=1258305923]
 tile_map_data = PackedByteArray("AAAbAAQAAAAIAAEAAAAbAAUAAAAIAAEAAAAbAAYAAAAIAAEAAAAbAAcAAAAIAAEAAAAbAAgAAAAIAAEAAAAbAAkAAAAIAAEAAAAbAAoAAAAIAAEAAAAbAAsAAAAIAAEAAAAbAAwAAAAIAAEAAAAbAA0AAAAIAAEAAAAbAA4AAAAIAAEAAAAbAA8AAAAIAAEAAAAbABAAAAAIAAEAAAAbABEAAAAIAAEAAAAbABIAAAAIAAEAAAAbABMAAAAIAAEAAAAbABQAAAAIAAEAAAAbABUAAAAIAAEAAAAbABYAAAAIAAEAAAAZABsAAAAEAAYAAAABABsAAAAEAAYAABD//xYAAAAIAAEAABD//xUAAAAIAAEAABD//xQAAAAIAAEAABD//xMAAAAIAAEAABD//xIAAAAIAAEAABD//xEAAAAIAAEAABD//xAAAAAIAAEAABD//w8AAAAIAAEAABD//w4AAAAIAAEAABD//w0AAAAIAAEAABD//wwAAAAIAAEAABD//wsAAAAIAAEAABD//woAAAAIAAEAABD//wkAAAAIAAEAABD//wgAAAAIAAEAABD//wcAAAAIAAEAABD//wYAAAAIAAEAABD//wUAAAAIAAEAABD//wQAAAAIAAEAABAbABsAAAAIAAYAAAD//xsAAAAIAAYAABAFABsAAAAEAAYAAAAJABsAAAAEAAYAAAANABsAAAAEAAYAAAARABsAAAAEAAYAAAAVABsAAAAEAAYAAAACAAAAAAAEAAYAAAAGAAAAAAAEAAYAAAAaAAAAAAAEAAYAAAAbAAEAAAAIAAEAAAD//wEAAAAIAAEAADAKAAAAAAAEAAYAAAAOAAAAAAAEAAYAAAD///7/AAAIAAAAABAbAP7/AAAIAAAAAAA=")
 tile_set = SubResource("TileSet_n8gdj")
+
+[node name="EnvironmentObjects" type="Node2D" parent="." unique_id=1738659958]
+
+[node name="StaticToilet" parent="EnvironmentObjects" unique_id=1419432170 instance=ExtResource("3_k3o24")]
+position = Vector2(43, 229)
