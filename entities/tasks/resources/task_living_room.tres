@@ -1,9 +1,12 @@
 [gd_resource type="Resource" script_class="TaskResource" format=3 uid="uid://bsuab8b71i0vv"]
 
 [ext_resource type="Script" uid="uid://b28w3eeo05fdr" path="res://entities/tasks/task_resource.gd" id="1_35ie5"]
+[ext_resource type="PackedScene" uid="uid://cdikbgarwh17m" path="res://entities/tasks/minigames/task_place_holder.tscn" id="1_f6k51"]
 
 [resource]
 script = ExtResource("1_35ie5")
-task_id = "task_living"
+task_id = "task_living_room"
+task_name = "television task"
+minigame_scene = ExtResource("1_f6k51")
 room = "Living Room"
 metadata/_custom_type_script = "uid://b28w3eeo05fdr"

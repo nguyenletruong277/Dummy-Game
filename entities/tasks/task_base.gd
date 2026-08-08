@@ -1,4 +1,3 @@
-# entities/tasks/task_base.gd
 class_name TaskBase
 extends Control
 

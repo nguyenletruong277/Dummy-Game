@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://co84pcahdpxwt" path="res://scenes/dressing_room/dressing_room.tscn" id="1_41f7g"]
 [ext_resource type="PackedScene" uid="uid://ciqpb1mu0ihts" path="res://entities/environment_objects/static_tree_1.tscn" id="3_stvw0"]
 [ext_resource type="PackedScene" uid="uid://c2iby87qh8d8l" path="res://entities/player/player.tscn" id="3_vkueb"]
+[ext_resource type="PackedScene" uid="uid://qh2cxdahrj77" path="res://entities/interactable_objects/living_room/television.tscn" id="4_stvw0"]
 
 [node name="Sandbox" type="Node2D" unique_id=1537662398]
 y_sort_enabled = true
@@ -17,3 +18,6 @@ y_sort_enabled = true
 
 [node name="StaticTree1" parent="EnvironmentObjects" unique_id=1419432170 instance=ExtResource("3_stvw0")]
 position = Vector2(511, 271)
+
+[node name="Television" parent="EnvironmentObjects" unique_id=346674091 instance=ExtResource("4_stvw0")]
+position = Vector2(247, 173)

@@ -101,3 +101,32 @@ func complete_task(player_id: int, task_id: String) -> void:
 func reset_manager() -> void:
 	total_tasks_count = 0
 	completed_tasks_count = 0
+
+# 6. MỞ GIAO DIỆN MINIGAME KHI INTERACT
+func open_task_ui(task_id: String) -> void:
+	var task_res = get_task_info(task_id)
+	
+	# Kiểm tra nếu task không tồn tại hoặc đã làm xong thì bỏ qua
+	if not task_res:
+		push_error("[TaskManager] Không tìm thấy Task Resource cho ID: ", task_id)
+		return
+		
+	if task_res.is_completed:
+		print("[TaskManager] Task này đã hoàn thành rồi: ", task_id)
+		return
+
+	# Kiểm tra xem Scene Minigame đã được gán trong TaskResource chưa
+	if not task_res.minigame_scene:
+		push_error("[TaskManager] Chưa gán minigame_scene cho Task: ", task_id)
+		return
+
+	# Tạo Instance Minigame UI
+	var minigame_instance = task_res.minigame_scene.instantiate() as TaskBase
+	if minigame_instance:
+		# Hiển thị UI lên Màn hình
+		var canvas_layer = CanvasLayer.new()
+		canvas_layer.add_child(minigame_instance)
+		get_tree().root.add_child(canvas_layer)
+		
+		# Gán task_id -> Trigger hàm _on_setup() tự động điền dữ liệu
+		minigame_instance.task_id = task_id

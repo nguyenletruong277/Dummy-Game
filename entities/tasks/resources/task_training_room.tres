@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_0polp")
-task_id = "task_training"
+task_id = "task_training_room"
 room = "Training Room"
 metadata/_custom_type_script = "uid://b28w3eeo05fdr"

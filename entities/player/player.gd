@@ -35,6 +35,9 @@ func _physics_process(_delta):
 		else:
 			velocity = Vector2.ZERO
 		move_and_slide()
+		
+		if Input.is_action_just_pressed("interact"):
+			execute_interaction()
 	
 	# 2. Both machines (Local + Remote) auto update ANIMATION based on VELOCITY
 	_update_animation()
@@ -57,29 +60,40 @@ func _update_animation():
 			animation.stop()
 		animation.frame = 0
 
-func _unhandled_input(event: InputEvent) -> void:
-	# Kiểm tra khi người chơi bấm nút Tương tác (ví dụ phím E hoặc nút Use)
-	if event.is_action_pressed("interact"):
-		execute_interaction()
-
 func execute_interaction() -> void:
 	if interactables_in_range.is_empty():
 		return
 	
-	# Lấy vật thể gần nhất trong danh sách (hoặc vật thể đầu tiên)
+	# Lấy vật thể cuối cùng
 	var target = interactables_in_range.back()
-	
-	# Gọi hàm tương tác trên vật thể đó (nếu vật thể có định nghĩa hàm interact)
-	if target.has_method("interact"):
-		target.interact(self) # Truyền bản thân Player vào nếu cần xử lý logic
+	if target and target.has_method("interact"):
+		target.interact(self)
 
 # Signal khi đi vào vùng tương tác của Task/Vent/...
 func _on_interaction_detector_area_entered(area: Area2D) -> void:
-	if not interactables_in_range.has(area):
+	if area is InteractableObject and not interactables_in_range.has(area):
+		# Tắt sáng vật thể cũ trước khi thêm cái mới
+		_update_highlight_state(false)
+		
 		interactables_in_range.append(area)
-		# Gợi ý: Tại đây bạn có thể bật sáng nút "Use" hoặc hiện viền cho vật thể!
+		
+		# Bật sáng duy nhất vật thể mới nhất vừa đi vào
+		_update_highlight_state(true)
 
 # Signal khi đi ra khỏi vùng tương tác
 func _on_interaction_detector_area_exited(area: Area2D) -> void:
-	interactables_in_range.erase(area)
-	# Gợi ý: Tắt nút "Use" nếu danh sách interactables_in_range bị rỗng
+	if interactables_in_range.has(area):
+		# Tắt sáng vật thể hiện tại
+		_update_highlight_state(false)
+		
+		interactables_in_range.erase(area)
+		
+		# Bật sáng lại vật thể kế tiếp nếu vẫn còn đứng gần đồ vật khác
+		_update_highlight_state(true)
+
+# Hàm phụ trách bật/tắt viền cho duy nhất vật thể đang được chọn
+func _update_highlight_state(enable: bool) -> void:
+	if not interactables_in_range.is_empty():
+		var current_target = interactables_in_range.back()
+		if current_target is InteractableObject:
+			current_target.set_highlight(enable)

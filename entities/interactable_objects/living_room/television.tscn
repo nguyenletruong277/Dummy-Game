@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://qh2cxdahrj77"]
+
+[ext_resource type="Script" uid="uid://b2bbu74ukl4lw" path="res://entities/interactable_objects/living_room/television.gd" id="1_n0gu7"]
+[ext_resource type="Material" uid="uid://cu37r0pfcmejo" path="res://assets/shaders/outline_material.tres" id="2_ecbsx"]
+[ext_resource type="Texture2D" uid="uid://wongpoqvbkr5" path="res://assets/map_elements/livingRoom/television.png" id="2_j80g3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ealr"]
+radius = 36.05551
+
+[node name="Television" type="Area2D" unique_id=346674091 node_paths=PackedStringArray("target_sprite")]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_n0gu7")
+outline_material = ExtResource("2_ecbsx")
+target_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1204141071]
+texture = ExtResource("2_j80g3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1640508654]
+position = Vector2(5, 26)
+shape = SubResource("CircleShape2D_8ealr")
