@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://36rw7ralfrhs"]
+
+[ext_resource type="Texture2D" uid="uid://jj0opeoxp82d" path="res://assets/map_elements/dressingRoom/shoe_rack.PNG" id="1_3l1se"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkjl1"]
+size = Vector2(87, 20)
+
+[node name="StaticShoeRack" type="StaticBody2D" unique_id=1783520488]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2034565815]
+texture = ExtResource("1_3l1se")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985162760]
+position = Vector2(-8.5, 0)
+shape = SubResource("RectangleShape2D_qkjl1")

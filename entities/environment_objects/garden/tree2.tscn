@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c2rnucuf20mo6"]
+
+[ext_resource type="Texture2D" uid="uid://18xgl6sjgxdn" path="res://assets/map_elements/garden/tree2.png" id="1_by5qu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1y7st"]
+
+[node name="StaticFen1" type="StaticBody2D" unique_id=1419432170]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=304411259]
+position = Vector2(522, 250)
+texture = ExtResource("1_by5qu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=385297565]
+position = Vector2(519, 273)
+shape = SubResource("CircleShape2D_1y7st")

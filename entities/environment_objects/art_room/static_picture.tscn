@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://djra6btn3d4t5"]
+
+[ext_resource type="Texture2D" uid="uid://ciw8l06bk4d5m" path="res://assets/map_elements/artRoom/picture.png" id="1_cxbve"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u27w8"]
+radius = 15.132746
+
+[node name="StaticPicture" type="StaticBody2D" unique_id=1783520488]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2034565815]
+texture = ExtResource("1_cxbve")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985162760]
+position = Vector2(-1, 9)
+shape = SubResource("CircleShape2D_u27w8")

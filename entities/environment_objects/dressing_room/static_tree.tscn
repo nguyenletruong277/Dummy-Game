@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d4mhh2yg378br"]
+
+[ext_resource type="Texture2D" uid="uid://cnxf0a6oewf7" path="res://assets/map_elements/dressingRoom/tree.PNG" id="1_qmoc6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1kdam"]
+radius = 11.0
+
+[node name="StaticTree" type="StaticBody2D" unique_id=1115639416]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1215504822]
+texture = ExtResource("1_qmoc6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1356774659]
+position = Vector2(-1, 16)
+shape = SubResource("CircleShape2D_1kdam")

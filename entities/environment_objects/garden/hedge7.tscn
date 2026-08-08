@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://di61cyb6jvj50"]
+
+[ext_resource type="Texture2D" uid="uid://8h8cddqamv5y" path="res://assets/map_elements/garden/hedge7.PNG" id="1_cbqu1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_euelv"]
+size = Vector2(8, 120)
+
+[node name="StaticFen1" type="StaticBody2D" unique_id=1419432170]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=304411259]
+position = Vector2(522, 250)
+texture = ExtResource("1_cbqu1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=385297565]
+position = Vector2(525, 254)
+shape = SubResource("RectangleShape2D_euelv")
