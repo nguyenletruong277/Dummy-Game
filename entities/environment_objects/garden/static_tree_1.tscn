@@ -3,15 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://b65c2t41tmn81" path="res://assets/map_elements/garden/tree1.png" id="1_pxdsp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ealr"]
-radius = 8.0
+radius = 17.029387
 
-[node name="StaticTree1" type="StaticBody2D" unique_id=1419432170]
+[node name="Tree2" type="StaticBody2D" unique_id=1419432170]
 y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=304411259]
+scale = Vector2(2, 2)
 texture = ExtResource("1_pxdsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=385297565]
-position = Vector2(2, 22)
+position = Vector2(3, 43)
 shape = SubResource("CircleShape2D_8ealr")

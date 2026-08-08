@@ -2,17 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://d0haj2jlkdgb4" path="res://assets/map_elements/garden/tree4.PNG" id="1_0vysk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gn4gs"]
-size = Vector2(8, 29)
+[sub_resource type="CircleShape2D" id="CircleShape2D_pyweu"]
+radius = 11.18034
 
-[node name="StaticFen1" type="StaticBody2D" unique_id=1419432170]
+[node name="Tree1" type="StaticBody2D" unique_id=1419432170]
 y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=304411259]
-position = Vector2(522, 250)
+scale = Vector2(2, 2)
 texture = ExtResource("1_0vysk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=385297565]
-position = Vector2(520, 278.5)
-shape = SubResource("RectangleShape2D_gn4gs")
+position = Vector2(-4, 90)
+shape = SubResource("CircleShape2D_pyweu")

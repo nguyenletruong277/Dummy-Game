@@ -1,7 +1,12 @@
 [gd_scene format=4 uid="uid://dxqli6bvyj7yk"]
 
 [ext_resource type="Texture2D" uid="uid://55ojl5qb6ol2" path="res://assets/map_elements/garden/ground.png" id="1_s78jy"]
+[ext_resource type="PackedScene" uid="uid://dwowwivbwfl6x" path="res://entities/environment_objects/garden/static_fen_1.tscn" id="3_kc7xj"]
+[ext_resource type="PackedScene" uid="uid://dlupm4ck5dbkw" path="res://entities/environment_objects/garden/tree4.tscn" id="3_wmy50"]
 [ext_resource type="Texture2D" uid="uid://yqvb65c7onjm" path="res://assets/map_elements/garden/hedge2.PNG" id="4_s1o1p"]
+[ext_resource type="PackedScene" uid="uid://lrt0px2qeorw" path="res://entities/environment_objects/garden/static_fen_7.tscn" id="6_hd7uq"]
+[ext_resource type="PackedScene" uid="uid://dgqugj374p461" path="res://entities/environment_objects/garden/tree1.tscn" id="8_ojjr1"]
+[ext_resource type="PackedScene" uid="uid://c2rnucuf20mo6" path="res://entities/environment_objects/garden/tree2.tscn" id="9_5njx1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wmy50"]
 texture = ExtResource("1_s78jy")
@@ -41,3 +46,36 @@ tile_set = SubResource("TileSet_fe1wu")
 [node name="Wall" type="TileMapLayer" parent="." unique_id=1486384061]
 tile_map_data = PackedByteArray("AAAGAEYAAAAFAAIAAAAMAEYAAAAFAAIAAAASAEYAAAAFAAIAAAAYAEYAAAAFAAIAAAAeAEYAAAAFAAIAAAADAEYAAAAFAAIAAAAhAEYAAAAFAAIAAAAlAEYAAAACAAIAABAAAAYAAAAFAAIAAEAAAAoAAAAFAAIAAEAAAAwAAAAFAAIAAEAAAA0AAAAFAAIAAEAAABQAAAAFAAIAAEAAABUAAAAFAAIAAEAAABkAAAAFAAIAAEAAABoAAAAFAAIAAEAAAB0AAAAFAAIAAEAAACMAAAAFAAIAAEAAACUAAAAFAAIAAEAAACgAAAAFAAIAAEAAACkAAAAFAAIAAEAAADAAAAAFAAIAAEAAADMAAAAFAAIAAEAAADQAAAAFAAIAAEAAADUAAAAFAAIAAEAAADcAAAAFAAIAAEAAADkAAAAFAAIAAEAAADsAAAAFAAIAAEAAAD8AAAAFAAIAAEAAAEEAAAAFAAIAAEAAAC8AAAAFAAIAAEAAABMAAAAFAAIAAEAAAAQAAAAFAAIAAEACAEYAAAAFAAIAAAD//0YAAAACAAIAAAAkAEEAAAAFAAIAAGAkADsAAAAFAAIAAGAkADUAAAAFAAIAAGAkADAAAAAFAAIAAGAkABsAAAAFAAIAAGAkABUAAAAFAAIAAGAkAA8AAAAFAAIAAGAkAAkAAAAFAAIAAGAkAAcAAAAFAAIAAGAFAAIAAAAFAAIAAAAKAAIAAAAFAAIAAAAPAAIAAAAFAAIAAAAVAAIAAAAFAAIAAAAbAAIAAAAFAAIAAAAgAAIAAAAFAAIAAAAAAAAAAAALAAIAAGAAAAMAAAAFAAIAAGAkAAMAAAAFAAIAAGA=")
 tile_set = SubResource("TileSet_1n27j")
+
+[node name="EnvironmentObjects" type="Node2D" parent="." unique_id=246026896]
+y_sort_enabled = true
+
+[node name="StaticFen1" parent="EnvironmentObjects" unique_id=1953855461 instance=ExtResource("3_kc7xj")]
+position = Vector2(297, 61)
+
+[node name="StaticFen7" parent="EnvironmentObjects" unique_id=1419432170 instance=ExtResource("6_hd7uq")]
+position = Vector2(67, 507)
+
+[node name="StaticFen8" parent="EnvironmentObjects" unique_id=531256751 instance=ExtResource("6_hd7uq")]
+position = Vector2(515, 366)
+
+[node name="StaticFen9" parent="EnvironmentObjects" unique_id=1326206629 instance=ExtResource("6_hd7uq")]
+position = Vector2(9, 508)
+
+[node name="Tree1" parent="EnvironmentObjects" unique_id=1305988330 instance=ExtResource("8_ojjr1")]
+position = Vector2(64, 62)
+
+[node name="Tree2" parent="EnvironmentObjects" unique_id=847985576 instance=ExtResource("9_5njx1")]
+position = Vector2(528, 76)
+
+[node name="Tree3" parent="EnvironmentObjects" unique_id=1665930033 instance=ExtResource("9_5njx1")]
+position = Vector2(257, 83)
+
+[node name="Tree4" parent="EnvironmentObjects" unique_id=728833592 instance=ExtResource("3_wmy50")]
+position = Vector2(84, 903)
+
+[node name="Tree5" parent="EnvironmentObjects" unique_id=97928271 instance=ExtResource("9_5njx1")]
+position = Vector2(524, 996)
+
+[node name="Tree6" parent="EnvironmentObjects" unique_id=1961673293 instance=ExtResource("9_5njx1")]
+position = Vector2(74, 204)
