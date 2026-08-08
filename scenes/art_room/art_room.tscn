@@ -1,0 +1,47 @@
+[gd_scene format=4 uid="uid://b2i0hqufeo8wi"]
+
+[ext_resource type="Texture2D" uid="uid://dycnhtjb0k62m" path="res://assets/map_elements/artRoom/ground.png" id="1_x6yd6"]
+[ext_resource type="Texture2D" uid="uid://ps2dsvulffpn" path="res://assets/map_elements/sprites/wall/outside/outside6.PNG" id="3_2epca"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5ejv"]
+texture = ExtResource("1_x6yd6")
+0:0/size_in_atlas = Vector2i(16, 12)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_n8gdj"]
+sources/0 = SubResource("TileSetAtlasSource_o5ejv")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e281c"]
+texture = ExtResource("3_2epca")
+texture_region_size = Vector2i(18, 18)
+7:5/size_in_atlas = Vector2i(4, 5)
+7:5/0 = 0
+7:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24.836853, -46.286854, 16.708435, -45.835274, 16.232805, 35.427856, 16.708435, 36.803696, -36.126328, 34.997383, -36.126328, -29.12685, -26.643158, -30.481586)
+3:5/size_in_atlas = Vector2i(4, 5)
+3:5/0 = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(13.998962, -31.836323, 37.48105, -30.481586, 37.48105, 35.900543, 15.805267, 35.900543, -36.126328, 34.997383, -36.126328, -29.12685, -26.643158, -30.481586)
+2:5/size_in_atlas = Vector2i(1, 5)
+2:5/0 = 0
+7:1/size_in_atlas = Vector2i(4, 4)
+7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-25.74002, -36.352116, 15.805267, -37.255272, 16.232805, 35.427856, 16.708435, 36.803696, -27.99791, 35.44896)
+7:0/size_in_atlas = Vector2i(4, 1)
+7:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gx3r7"]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+sources/8 = SubResource("TileSetAtlasSource_e281c")
+
+[node name="ArtRoom" type="Node2D" unique_id=1973338249]
+y_sort_enabled = true
+
+[node name="Floor" type="TileMapLayer" parent="." unique_id=1455591035]
+scale = Vector2(2.065579, 2.194334)
+tile_map_data = PackedByteArray("AAAHAAUAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_n8gdj")
+
+[node name="Wall" type="TileMapLayer" parent="." unique_id=2054681879]
+scale = Vector2(1.0029039, 1)
+tile_map_data = PackedByteArray("AAAEABkACAADAAUAAAAMABkACAADAAUAAAAUABkACAADAAUAAAAbABkAAAADAAIAAAAgAAgAAQAFAAIAAAAgAA8ACAAHAAEAAAAgABQACAAHAAEAAAD//xQACAAHAAEAABD//w0AAQAFAAIAAAD//wYAAQAFAAIAAAAgABkACAAHAAUAAAAgABAACAAHAAEAAAAgAAsACAAHAAEAAAAgAAoACAAHAAEAAAAgAAYACAAHAAEAAAAcABkACAADAAUAAAAYABkACAADAAUAAAAQABkACAADAAUAAAAIABkACAADAAUAAAD//xkACAAHAAUAABADABkACAADAAUAAAD//xAACAAHAAEAABD//wwACAAHAAEAABD//wsACAAHAAEAABD//wcACAAHAAEAABD//wQACAAHAAEAABAgAAQACAAHAAEAAAAgAAEACAAHAAEAAAD//wEACAAHAAEAABADAAEACAADAAUAAAAEAAEACAADAAUAAAAFAAEACAADAAUAAAAGAAEACAADAAUAAAAHAAEACAADAAUAAAAIAAEACAADAAUAAAAJAAEACAADAAUAAAAKAAEACAADAAUAAAALAAEACAADAAUAAAAMAAEACAADAAUAAAANAAEACAADAAUAAAAOAAEACAADAAUAAAAPAAEACAADAAUAAAAQAAEACAADAAUAAAARAAEACAADAAUAAAASAAEACAADAAUAAAATAAEACAADAAUAAAAUAAEACAADAAUAAAAVAAEACAADAAUAAAAWAAEACAADAAUAAAAXAAEACAADAAUAAAA=")
+tile_set = SubResource("TileSet_gx3r7")

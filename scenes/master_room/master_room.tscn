@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d0s0wapthuje1"]
+
+[ext_resource type="Texture2D" uid="uid://55ojl5qb6ol2" path="res://assets/map_elements/garden/ground.png" id="1_4m7cu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gjasj"]
+texture = ExtResource("1_4m7cu")
+0:0/size_in_atlas = Vector2i(17, 12)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gx3r7"]
+sources/0 = SubResource("TileSetAtlasSource_gjasj")
+
+[node name="MasterRoom" type="Node2D" unique_id=1490007623]
+
+[node name="Floor" type="TileMapLayer" parent="." unique_id=367714100]
+tile_map_data = PackedByteArray(0, 0, 7, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_gx3r7")

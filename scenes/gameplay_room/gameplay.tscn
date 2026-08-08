@@ -1,3 +1,55 @@
 [gd_scene format=3 uid="uid://n1v3ld5iulr5"]
 
-[node name="Node2D" type="Node2D" unique_id=1827093526]
+[ext_resource type="PackedScene" uid="uid://d0s0wapthuje1" path="res://scenes/master_room/master_room.tscn" id="1_mlj4r"]
+[ext_resource type="PackedScene" uid="uid://co84pcahdpxwt" path="res://scenes/dressing_room/dressing_room.tscn" id="2_mq8pa"]
+[ext_resource type="PackedScene" uid="uid://npr27wbopp3v" path="res://scenes/kitchen/kitchen.tscn" id="3_qfo1p"]
+[ext_resource type="PackedScene" uid="uid://dj04qdv2naisg" path="res://scenes/living_room/living_room.tscn" id="4_vkxor"]
+[ext_resource type="PackedScene" uid="uid://bu5jlfdrlv054" path="res://scenes/training_room/training_room.tscn" id="5_kd2je"]
+[ext_resource type="PackedScene" uid="uid://b2i0hqufeo8wi" path="res://scenes/art_room/art_room.tscn" id="5_mlj4r"]
+[ext_resource type="PackedScene" uid="uid://dxqli6bvyj7yk" path="res://scenes/garden/garden.tscn" id="6_1n27j"]
+[ext_resource type="PackedScene" uid="uid://bv2lx1pc13cx" path="res://scenes/toilet/toilet.tscn" id="7_pjdlk"]
+[ext_resource type="PackedScene" uid="uid://ckxcf6u30v64w" path="res://scenes/cinema/cinema.tscn" id="8_woj7t"]
+
+[node name="Gameplay" type="Node2D" unique_id=1827093526]
+
+[node name="MasterRoom" parent="." unique_id=1490007623 instance=ExtResource("1_mlj4r")]
+position = Vector2(112, 440)
+scale = Vector2(6.1057053, 4.6545186)
+
+[node name="ArtRoom" parent="." unique_id=1973338249 instance=ExtResource("5_mlj4r")]
+position = Vector2(154, 1219)
+metadata/_edit_lock_ = true
+
+[node name="DressingRoom" parent="." unique_id=287308479 instance=ExtResource("2_mq8pa")]
+position = Vector2(1454, 26)
+metadata/_edit_lock_ = true
+
+[node name="Kitchen" parent="." unique_id=1633826754 instance=ExtResource("3_qfo1p")]
+position = Vector2(314.00003, 16)
+scale = Vector2(0.99804515, 0.77808994)
+metadata/_edit_lock_ = true
+
+[node name="LivingRoom" parent="." unique_id=113752824 instance=ExtResource("4_vkxor")]
+position = Vector2(1624, 418)
+scale = Vector2(0.9890142, 1.3014736)
+metadata/_edit_lock_ = true
+
+[node name="TrainingRoom" parent="." unique_id=1968638597 instance=ExtResource("5_kd2je")]
+position = Vector2(-488, 40)
+scale = Vector2(1.0027337, 1.0406649)
+metadata/_edit_lock_ = true
+
+[node name="Garden" parent="." unique_id=1670473561 instance=ExtResource("6_1n27j")]
+position = Vector2(-491, 489)
+scale = Vector2(1, 1.0128778)
+metadata/_edit_lock_ = true
+
+[node name="Toilet" parent="." unique_id=1193608937 instance=ExtResource("7_pjdlk")]
+position = Vector2(677, 1232.0001)
+scale = Vector2(0.96650475, 0.9106351)
+metadata/_edit_lock_ = true
+
+[node name="Cinema" parent="." unique_id=1493839281 instance=ExtResource("8_woj7t")]
+position = Vector2(1130, 1276)
+scale = Vector2(1.4716005, 0.9106351)
+metadata/_edit_lock_ = true

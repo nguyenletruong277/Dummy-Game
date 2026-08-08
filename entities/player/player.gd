@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Movement speed of the player
-@export var SPEED = 200.0
+@export var SPEED = 300.0
 
 # References to child nodes
 @onready var camera = $Camera2D
