@@ -39,7 +39,10 @@
 
 ### FOR STANDARD USER
 
-[...]
+- [⬇️ Windows](https://github.com/phamnguyenminhquan/Dummy-Game/releases/latest/download/among-us-lan-windows.zip)
+- [⬇️ Linux](https://github.com/phamnguyenminhquan/Dummy-Game/releases/latest/download/among-us-lan-linux.zip)
+
+Or see [all releases](https://github.com/phamnguyenminhquan/Dummy-Game/releases).
 
 ### FOR CONTRIBUTOR
 

@@ -1,63 +1,85 @@
-name: Godot Multi-Platform Build & Release
+name: Build Godot Game
 
 on:
   push:
-    tags:
-      - 'v*' # Tự động chạy khi push tag (vd: v1.0.0)
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 env:
-  GODOT_VERSION: 4.7.1 # Đổi đúng phiên bản Godot bạn đang dùng (vd: 4.3, 4.1.1...)
+  GODOT_VERSION: "4.7.0"
+  EXPORT_NAME: "among-us-lan"
 
 jobs:
-  export-game:
-    name: Export for ${{ matrix.preset }}
+  export:
+    name: Export Game
     runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
-          - preset: "Windows Desktop"
-            filename: "AmongUs_Windows.zip"
-          - preset: "Linux"
-            filename: "AmongUs_Linux.zip"
-
+          - platform: linux
+            export-preset: "Linux"
+            output-dir: linux
+            output-file: "among-us-lan.x86_64"
+          - platform: windows
+            export-preset: "Windows Desktop"
+            output-dir: windows
+            output-file: "among-us-lan.exe"
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           lfs: true
 
-      - name: Build Game
-        uses: firebelley/godot-export@v6.0.0
+      - name: Setup Godot
+        uses: chickensoft-games/setup-godot@v2
         with:
-          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64.zip
-          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
-          relative_project_subpath: "."
-          archive_output: true
-          preset: ${{ matrix.preset }}
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+          include-templates: true
+          cache: true
 
-      - name: Rename Build Artifact
+      - name: Import project (first pass to build .godot cache)
+        run: godot --headless --verbose --import
+
+      - name: Create export dirs
+        run: mkdir -p build/${{ matrix.output-dir }}
+
+      - name: Export ${{ matrix.platform }}
         run: |
-          mv "${{ runner.temp }}/build/${{ matrix.preset }}.zip" "${{ runner.temp }}/build/${{ matrix.filename }}"
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+          godot --headless --export-release "${{ matrix.export-preset }}" \
+            build/${{ matrix.output-dir }}/${{ matrix.output-file }}
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v5
         with:
-          name: ${{ matrix.filename }}
-          path: ${{ runner.temp }}/build/${{ matrix.filename }}
-
+          name: ${{ env.EXPORT_NAME }}-${{ matrix.platform }}
+          path: build/${{ matrix.output-dir }}
+          retention-days: 7
+  
   release:
-    name: Create GitHub Release
-    needs: export-game
+    name: Create Release
+    needs: export
     runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
     steps:
-      - name: Download All Artifacts
-        uses: actions/download-artifact@v4
+      - name: Download all artifacts
+        uses: actions/download-artifact@v5
         with:
           path: artifacts
 
-      - name: Create Release and Upload Zip Files
+      - name: Zip builds
+        run: |
+          cd artifacts
+          for dir in */; do
+            zip -r "../${dir%/}.zip" "$dir"
+          done
+
+      - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/*/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          files: "*.zip"
+          generate_release_notes: true
