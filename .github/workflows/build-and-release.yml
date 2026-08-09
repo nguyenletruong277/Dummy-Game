@@ -1,0 +1,63 @@
+name: Godot Multi-Platform Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Tự động chạy khi push tag (vd: v1.0.0)
+
+env:
+  GODOT_VERSION: 4.7.1 # Đổi đúng phiên bản Godot bạn đang dùng (vd: 4.3, 4.1.1...)
+
+jobs:
+  export-game:
+    name: Export for ${{ matrix.preset }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - preset: "Windows Desktop"
+            filename: "AmongUs_Windows.zip"
+          - preset: "Linux"
+            filename: "AmongUs_Linux.zip"
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Build Game
+        uses: firebelley/godot-export@v6.0.0
+        with:
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
+          relative_project_subpath: "."
+          archive_output: true
+          preset: ${{ matrix.preset }}
+
+      - name: Rename Build Artifact
+        run: |
+          mv "${{ runner.temp }}/build/${{ matrix.preset }}.zip" "${{ runner.temp }}/build/${{ matrix.filename }}"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.filename }}
+          path: ${{ runner.temp }}/build/${{ matrix.filename }}
+
+  release:
+    name: Create GitHub Release
+    needs: export-game
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create Release and Upload Zip Files
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -4,3 +4,11 @@
 # Godot-specific ignore cases
 .godot/
 *.translation
+
+# Bỏ qua các file build tạo ra trên máy cá nhân
+build/
+builds/
+*.exe
+*.zip
+*.pck
+*.x86_64
