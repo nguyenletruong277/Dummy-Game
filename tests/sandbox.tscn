@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://kr868ruuhbfx"]
 
-[ext_resource type="PackedScene" uid="uid://dxqli6bvyj7yk" path="res://scenes/garden/garden.tscn" id="1_41f7g"]
+[ext_resource type="PackedScene" uid="uid://npr27wbopp3v" path="res://scenes/kitchen/kitchen.tscn" id="2_41f7g"]
 [ext_resource type="PackedScene" uid="uid://c2iby87qh8d8l" path="res://entities/player/player.tscn" id="3_vkueb"]
 
 [node name="Sandbox" type="Node2D" unique_id=1537662398]
 y_sort_enabled = true
 
-[node name="Garden" parent="." unique_id=1670473561 instance=ExtResource("1_41f7g")]
+[node name="Kitchen" parent="." unique_id=1633826754 instance=ExtResource("2_41f7g")]
+position = Vector2(-14, 66)
 
 [node name="Player" parent="." unique_id=1033218137 instance=ExtResource("3_vkueb")]
 position = Vector2(387, 264)

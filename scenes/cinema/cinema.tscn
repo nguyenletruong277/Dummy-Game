@@ -2,6 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://doifcjdnajdde" path="res://assets/map_elements/cinema/ground.png" id="1_0ug0c"]
 [ext_resource type="Texture2D" uid="uid://ps2dsvulffpn" path="res://assets/map_elements/sprites/wall/outside/outside6.PNG" id="2_o77b7"]
+[ext_resource type="PackedScene" uid="uid://tly8g0m8xdxl" path="res://entities/environment_objects/cinema/static_sofaL.tscn" id="3_38751"]
+[ext_resource type="PackedScene" uid="uid://y3hyblx23nkv" path="res://entities/environment_objects/cinema/static_sofaR.tscn" id="4_tfld8"]
+[ext_resource type="PackedScene" uid="uid://dp7dpl4usghl4" path="res://entities/environment_objects/cinema/static_projector.tscn" id="5_hp316"]
+[ext_resource type="PackedScene" uid="uid://q224qy6hvee1" path="res://entities/environment_objects/cinema/static_popcorn.tscn" id="6_oolpu"]
+[ext_resource type="PackedScene" uid="uid://bupcmd405af6j" path="res://entities/environment_objects/cinema/static_speaker.tscn" id="7_vvst7"]
+[ext_resource type="PackedScene" uid="uid://csljpslyj8ki8" path="res://entities/environment_objects/cinema/static_projectionScreen.tscn" id="8_yno6l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o77b7"]
 texture = ExtResource("1_0ug0c")
@@ -33,8 +39,9 @@ physics_layer_0/collision_mask = 0
 sources/2 = SubResource("TileSetAtlasSource_ggt0r")
 
 [node name="Cinema" type="Node2D" unique_id=1493839281]
+y_sort_enabled = true
 
-[node name="Background" type="TileMapLayer" parent="." unique_id=498753351]
+[node name="Floor" type="TileMapLayer" parent="." unique_id=498753351]
 scale = Vector2(2.8991194, 2.2010195)
 tile_map_data = PackedByteArray("AAAHAAUAAAAAAAAAADA=")
 tile_set = SubResource("TileSet_gx3r7")
@@ -42,3 +49,24 @@ tile_set = SubResource("TileSet_gx3r7")
 [node name="Wall" type="TileMapLayer" parent="." unique_id=1880703875]
 tile_map_data = PackedByteArray("AAArAAMAAgAIAAEAAAArAAQAAgAIAAEAAAArAAUAAgAIAAEAAAArAAYAAgAIAAEAAAArAAcAAgAIAAEAAAArAAgAAgAIAAEAAAArAAkAAgAIAAEAAAArAAoAAgAIAAEAAAArAAsAAgAIAAEAAAArAAwAAgAIAAEAAAArAA0AAgAIAAEAAAArAA4AAgAIAAEAAAArAA8AAgAIAAEAAAArABAAAgAIAAEAAAArABEAAgAIAAEAAAArABIAAgAIAAEAAAArABMAAgAIAAEAAAArABQAAgAIAAEAAAADABgAAgAEAAYAAAAEABgAAgAEAAYAAAAFABgAAgAEAAYAAAAGABgAAgAEAAYAAAAHABgAAgAEAAYAAAAIABgAAgAEAAYAAAAJABgAAgAEAAYAAAAKABgAAgAEAAYAAAALABgAAgAEAAYAAAAMABgAAgAEAAYAAAANABgAAgAEAAYAAAAOABgAAgAEAAYAAAAPABgAAgAEAAYAAAAQABgAAgAEAAYAAAARABgAAgAEAAYAAAASABgAAgAEAAYAAAATABgAAgAEAAYAAAAUABgAAgAEAAYAAAAVABgAAgAEAAYAAAAWABgAAgAEAAYAAAAXABgAAgAEAAYAAAAYABgAAgAEAAYAAAAZABgAAgAEAAYAAAAaABgAAgAEAAYAAAAbABgAAgAEAAYAAAAcABgAAgAEAAYAAAAdABgAAgAEAAYAAAAeABgAAgAEAAYAAAAfABgAAgAEAAYAAAAgABgAAgAEAAYAAAAhABgAAgAEAAYAAAAiABgAAgAEAAYAAAAjABgAAgAEAAYAAAAkABgAAgAEAAYAAAAlABgAAgAEAAYAAAAmABgAAgAEAAYAAAAnABgAAgAEAAYAAAAoABgAAgAEAAYAAAArABgAAgAIAAYAAAD//xgAAgAIAAYAABD//xMAAgAIAAEAABD//xIAAgAIAAEAABD//xEAAgAIAAEAABD//xAAAgAIAAEAABD//w8AAgAIAAEAABD//w4AAgAIAAEAABD//w0AAgAIAAEAABD//wwAAgAIAAEAABD//wsAAgAIAAEAABD//woAAgAIAAEAABD//wkAAgAIAAEAABD//wgAAgAIAAEAABD//wcAAgAIAAEAABD//wYAAgAIAAEAABD//wUAAgAIAAEAABD//wQAAgAIAAEAABD//wMAAgAIAAEAABD//wIAAgAIAAEAABAqAP//AgAEAAYAAAApAP//AgAEAAYAAAAoAP//AgAEAAYAAAAnAP//AgAEAAYAAAAmAP//AgAEAAYAAAAlAP//AgAEAAYAAAAkAP//AgAEAAYAAAAjAP//AgAEAAYAAAAiAP//AgAEAAYAAAAhAP//AgAEAAYAAAAgAP//AgAEAAYAAAAfAP//AgAEAAYAAAAeAP//AgAEAAYAAAAdAP//AgAEAAYAAAAcAP//AgAEAAYAAAAbAP//AgAEAAYAAAAaAP//AgAEAAYAAAAZAP//AgAEAAYAAAAYAP//AgAEAAYAAAAXAP//AgAEAAYAAAAWAP//AgAEAAYAAAAVAP//AgAEAAYAAAAUAP//AgAEAAYAAAATAP//AgAEAAYAAAASAP//AgAEAAYAAAARAP//AgAEAAYAAAAQAP//AgAEAAYAAAAPAP//AgAEAAYAAAAOAP//AgAEAAYAAAANAP//AgAEAAYAAAAMAP//AgAEAAYAAAALAP//AgAEAAYAAAD/////AgAIAAEAABArAAAAAgAIAAEAAAA=")
 tile_set = SubResource("TileSet_woj7t")
+
+[node name="EnvironmentObjects" type="Node2D" parent="." unique_id=698302293]
+y_sort_enabled = true
+
+[node name="StaticSofaL" parent="EnvironmentObjects" unique_id=1783520488 instance=ExtResource("3_38751")]
+position = Vector2(320, 292)
+
+[node name="StaticSofaR" parent="EnvironmentObjects" unique_id=612923001 instance=ExtResource("4_tfld8")]
+position = Vector2(430, 274)
+
+[node name="StaticProjector" parent="EnvironmentObjects" unique_id=1194877466 instance=ExtResource("5_hp316")]
+position = Vector2(369, 166)
+
+[node name="StaticPopcorn" parent="EnvironmentObjects" unique_id=176963644 instance=ExtResource("6_oolpu")]
+position = Vector2(105, 229)
+
+[node name="StaticSpeaker" parent="EnvironmentObjects" unique_id=1009416275 instance=ExtResource("7_vvst7")]
+position = Vector2(540, 108)
+
+[node name="StaticProjectionScreen" parent="EnvironmentObjects" unique_id=1964795751 instance=ExtResource("8_yno6l")]
+position = Vector2(382, 57)

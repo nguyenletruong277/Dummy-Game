@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://vh181fk4cexl" path="res://assets/map_elements/sprites/wall/wall2.PNG" id="7_ltbhp"]
 [ext_resource type="Texture2D" uid="uid://bl1lu06ro8mkk" path="res://assets/map_elements/sprites/wall/outside/outside8.PNG" id="9_5opem"]
 [ext_resource type="Texture2D" uid="uid://dlap6v1dce83k" path="res://assets/map_elements/sprites/wall/outside/outside9.PNG" id="10_bncge"]
+[ext_resource type="PackedScene" uid="uid://36rw7ralfrhs" path="res://entities/environment_objects/dressing_room/static_shoe_rack.tscn" id="10_x3jmi"]
 [ext_resource type="Texture2D" uid="uid://j70tx5cw3s48" path="res://assets/map_elements/sprites/wall/doorwall/dw5.PNG" id="11_1esd1"]
+[ext_resource type="PackedScene" uid="uid://d4mhh2yg378br" path="res://entities/environment_objects/dressing_room/static_tree.tscn" id="11_m13r3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ydf2k"]
 texture = ExtResource("1_glr7i")
@@ -151,6 +153,7 @@ sources/8 = SubResource("TileSetAtlasSource_y2wfr")
 sources/9 = SubResource("TileSetAtlasSource_6ilpk")
 
 [node name="DressingRoom" type="Node2D" unique_id=287308479]
+y_sort_enabled = true
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1872249376]
 position = Vector2(-21.000002, 0)
@@ -161,3 +164,12 @@ tile_set = SubResource("TileSet_gx3r7")
 [node name="Wall" type="TileMapLayer" parent="." unique_id=1694318952]
 tile_map_data = PackedByteArray("AAAEAAAAAwAGAAAAAAAFAAAAAwAGAAAAAAAGAAAAAwAGAAAAAAAHAAAAAwAGAAAAAAAIAAAAAwAGAAAAAAAJAAAAAwAGAAAAAAAKAAAAAwAGAAAAAAALAAAAAwAGAAAAAAAMAAAAAwAGAAAAAAANAAAAAwAGAAAAAAAOAAAAAwAGAAAAAAAPAAAAAwAGAAAAAAAQAAAAAwAGAAAAAAARAAAAAwAGAAAAAAASAAAAAwAGAAAAAAATAAAAAwAGAAAAAAAUAAAAAwAGAAAAAAAVAAAAAwAGAAAAAAAWAAAAAwAGAAAAAAAXAAAAAwAGAAAAAAAYAAAAAwAGAAAAAAAZAAAAAwAGAAAAAAAaAAAAAwAGAAAAAAAbAAAAAwAGAAAAAAAcAAAAAwAGAAAAAAAdAAAAAwAGAAAAAAAeAAAAAwAGAAAAAAAfAAAAAwAGAAAAAAAgAAAAAwAGAAAAAAAhAAAAAwAGAAAAAAAiAAAAAwAGAAAAAAAjAAAAAwAGAAAAAAAkAAAAAwAGAAAAAAAlAAAAAwAGAAAAAAAmAAAAAwAGAAAAAAAAAAAAAwACAAAAAAArAAAAAwACAAAAABAnAAAAAwAGAAAAAAArAAQAAwACAAUAABArAAUAAwACAAUAABArAAYAAwACAAUAABArAAcAAwACAAUAABArAAgAAwACAAUAABArAAkAAwACAAUAABArAAoAAwACAAUAABArAAsAAwACAAUAABArAAwAAwACAAUAABArAA0AAwACAAUAABArAA4AAwACAAUAABArAA8AAwACAAUAABArABAAAwACAAUAABArABEAAwACAAUAABArABIAAwACAAUAABArABMAAwACAAUAABArABQAAwACAAUAABArABUAAwACAAUAABArABYAAwACAAUAABAAAAQAAwACAAUAAAAAAAUAAwACAAUAAAAAAAYAAwACAAUAAAAAAAcAAwACAAUAAAAAAAgAAwACAAUAAAAAAAkAAwACAAUAAAAAAAoAAwACAAUAAAAAAAsAAwACAAUAAAAAAAwAAwACAAUAAAAAAA0AAwACAAUAAAAAAA4AAwACAAUAAAAAAA8AAwACAAUAAAAAABAAAwACAAUAAAAAABEAAwACAAUAAAAAABIAAwACAAUAAAAAABMAAwACAAUAAAAAABQAAwACAAUAAAAAABUAAwACAAUAAAAAABYAAwACAAUAAAAAABkAAwACAAUAAAAqABoAAwAGAAAAAAAmABoAAwAGAAAAAAAlABoAAwAGAAAAAAAkABoAAwAGAAAAAAAjABoAAwAGAAAAAAAiABoAAwAGAAAAAAAhABoAAwAGAAAAAAAgABoAAwAGAAAAAAAfABoAAwAGAAAAAAAeABoAAwAGAAAAAAAdABoAAwAGAAAAAAAcABoAAwAGAAAAAAAbABoAAwAGAAAAAAAaABoAAwAGAAAAAAAZABoAAwAGAAAAAAAYABoAAwAGAAAAAAAXABoAAwAGAAAAAAAWABoAAwAGAAAAAAAVABoAAwAGAAAAAAAUABoAAwAGAAAAAAATABoAAwAGAAAAAAASABoAAwAGAAAAAAARABoAAwAGAAAAAAAQABoAAwAGAAAAAAAPABoAAwAGAAAAAAAOABoAAwAGAAAAAAANABoAAwAGAAAAAAA=")
 tile_set = SubResource("TileSet_qwvef")
+
+[node name="EnvironmentObjects" type="Node2D" parent="." unique_id=1660323231]
+y_sort_enabled = true
+
+[node name="StaticShoeRack" parent="EnvironmentObjects" unique_id=1783520488 instance=ExtResource("10_x3jmi")]
+position = Vector2(289, 244)
+
+[node name="StaticTree" parent="EnvironmentObjects" unique_id=1115639416 instance=ExtResource("11_m13r3")]
+position = Vector2(618, 328)

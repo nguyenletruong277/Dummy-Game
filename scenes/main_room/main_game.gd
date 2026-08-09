@@ -6,6 +6,7 @@ extends Node2D
 @onready var scene_container: Node2D = $World/SceneContainer
 @onready var lobby_ui: CanvasLayer = $UI/LobbyUI
 @onready var gameplay_ui: CanvasLayer = $UI/GameplayUI
+@onready var spawner: MultiplayerSpawner = $MultiplayerSpawner
 
 const LOBBY_SCENE := preload("res://scenes/waiting_room/lobby_scene.tscn")
 const GAMEPLAY_SCENE := preload("res://scenes/gameplay_room/gameplay.tscn") 
@@ -26,13 +27,17 @@ func _ready() -> void:
 
 #swap lobby and gameplay
 func load_scene(packed_scene: PackedScene) -> void:
+	# Xóa map cũ
 	for child in scene_container.get_children():
 		child.queue_free()
 	
 	if packed_scene:
+		# Thêm map mới (Lobby/Gameplay) vào SceneContainer
 		var instance = packed_scene.instantiate()
 		scene_container.add_child(instance)
 		print("[Main] Peer %d — loaded scene: %s" % [multiplayer.get_unique_id(), packed_scene.resource_path])
+
+# main_game.gd
 
 func _on_state_changed(new_state: Enums.GameState) -> void:
 	match new_state:
@@ -40,14 +45,28 @@ func _on_state_changed(new_state: Enums.GameState) -> void:
 			lobby_ui.visible = true
 			gameplay_ui.visible = false
 			load_scene(LOBBY_SCENE)
+			_teleport_to_current_map()
+
 		Enums.GameState.PLAYING:
 			lobby_ui.visible = false
 			gameplay_ui.visible = true
 			load_scene(GAMEPLAY_SCENE)
-		Enums.GameState.MEETING, Enums.GameState.VOTING:
-			# Các state này chỉ hiện UI Overlay, không swap scene
-			pass
+			_teleport_to_current_map()
 
+func _teleport_to_current_map() -> void:
+	await get_tree().create_timer(0.1).timeout
+	if not multiplayer.is_server():
+		return
+
+	# Lấy map vừa được load
+	if scene_container.get_child_count() > 0:
+		var current_map = scene_container.get_child(0)
+		# Tìm node SpawnPoints trong map đó
+		var spawn_container = current_map.get_node_or_null("SpawnPoints")
+		if spawn_container and spawn_container.get_child_count() > 0:
+			# Lấy vị trí Marker2D đầu tiên tìm thấy
+			var spawn_pos = spawn_container.get_child(0).global_position
+			$MultiplayerSpawner.move_all_players_to(spawn_pos)
 
 func _on_ready_pressed() -> void:
 	ready_button.disabled = true

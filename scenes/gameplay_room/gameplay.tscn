@@ -11,10 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://ckxcf6u30v64w" path="res://scenes/cinema/cinema.tscn" id="8_woj7t"]
 
 [node name="Gameplay" type="Node2D" unique_id=1827093526]
+y_sort_enabled = true
 
 [node name="MasterRoom" parent="." unique_id=1490007623 instance=ExtResource("1_mlj4r")]
-position = Vector2(112, 440)
+z_index = -1
+position = Vector2(86.99999, 439.99997)
 scale = Vector2(6.1057053, 4.6545186)
+metadata/_edit_lock_ = true
 
 [node name="ArtRoom" parent="." unique_id=1973338249 instance=ExtResource("5_mlj4r")]
 position = Vector2(154, 1219)
@@ -53,3 +56,10 @@ metadata/_edit_lock_ = true
 position = Vector2(1130, 1276)
 scale = Vector2(1.4716005, 0.9106351)
 metadata/_edit_lock_ = true
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=565856959]
+y_sort_enabled = true
+
+[node name="Spawn1" type="Marker2D" parent="SpawnPoints" unique_id=1927337715]
+y_sort_enabled = true
+position = Vector2(831, 906)

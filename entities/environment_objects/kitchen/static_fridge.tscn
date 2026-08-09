@@ -3,16 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://bg0amnn62l7u3" path="res://assets/map_elements/kitchen/fridge.png" id="1_ux4bm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1y7st"]
-radius = 19.0
+radius = 27.294687
 
 [node name="StaticFridge" type="StaticBody2D" unique_id=1419432170]
 y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=304411259]
-position = Vector2(522, 250)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_ux4bm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=385297565]
-position = Vector2(523, 268)
+position = Vector2(-1, 47)
 shape = SubResource("CircleShape2D_1y7st")

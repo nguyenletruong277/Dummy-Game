@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://x5jml5li0syw" path="res://assets/map_elements/toilet/ground.png" id="1_08ccm"]
 [ext_resource type="Texture2D" uid="uid://ps2dsvulffpn" path="res://assets/map_elements/sprites/wall/outside/outside6.PNG" id="2_0p5uh"]
 [ext_resource type="PackedScene" uid="uid://xcegd4ykin4i" path="res://entities/environment_objects/toilet/static_toilet.tscn" id="3_k3o24"]
+[ext_resource type="PackedScene" uid="uid://c2rnucuf20mo6" path="res://entities/environment_objects/garden/tree2.tscn" id="4_sqy85"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3o24"]
 texture = ExtResource("1_08ccm")
@@ -35,6 +36,7 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_sqy85")
 
 [node name="Toilet" type="Node2D" unique_id=1193608937]
+y_sort_enabled = true
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1074827100]
 scale = Vector2(2.1807227, 2.2892513)
@@ -46,6 +48,10 @@ tile_map_data = PackedByteArray("AAAbAAQAAAAIAAEAAAAbAAUAAAAIAAEAAAAbAAYAAAAIAAE
 tile_set = SubResource("TileSet_n8gdj")
 
 [node name="EnvironmentObjects" type="Node2D" parent="." unique_id=1738659958]
+y_sort_enabled = true
 
 [node name="StaticToilet" parent="EnvironmentObjects" unique_id=1419432170 instance=ExtResource("3_k3o24")]
 position = Vector2(43, 229)
+
+[node name="Tree2" parent="EnvironmentObjects" unique_id=184272959 instance=ExtResource("4_sqy85")]
+position = Vector2(378, 318)

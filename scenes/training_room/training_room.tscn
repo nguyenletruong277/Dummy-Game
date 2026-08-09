@@ -39,6 +39,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_mnno2")
 
 [node name="TrainingRoom" type="Node2D" unique_id=1968638597]
+y_sort_enabled = true
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1181238115]
 scale = Vector2(3.1039717, 2.2387054)
@@ -51,6 +52,7 @@ tile_map_data = PackedByteArray("AAADAP//AAAGAAAAAAAEAP//AAAGAAAAAAAFAP//AAAGAAA
 tile_set = SubResource("TileSet_qp4g4")
 
 [node name="EnvironmentObjects" type="Node2D" parent="." unique_id=1839562031]
+y_sort_enabled = true
 
 [node name="StaticBall" parent="EnvironmentObjects" unique_id=1419432170 instance=ExtResource("3_2qqji")]
 position = Vector2(212, 346)

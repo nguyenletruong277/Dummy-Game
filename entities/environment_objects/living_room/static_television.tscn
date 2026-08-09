@@ -3,16 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://wongpoqvbkr5" path="res://assets/map_elements/livingRoom/television.png" id="1_xqksm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1y7st"]
-radius = 27.018513
+radius = 40.4475
 
 [node name="StaticTelevision" type="StaticBody2D" unique_id=1419432170]
 y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=304411259]
-position = Vector2(522, 250)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_xqksm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=385297565]
-position = Vector2(524, 256)
+position = Vector2(0, 46)
 shape = SubResource("CircleShape2D_1y7st")

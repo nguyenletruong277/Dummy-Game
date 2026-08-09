@@ -3,16 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://cdl7yanp287qt" path="res://assets/map_elements/cinema/sofaR.png" id="1_fva2v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nthwl"]
-radius = 15.033297
+radius = 26.076809
 
 [node name="StaticSofaR" type="StaticBody2D" unique_id=1783520488]
 y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2034565815]
-position = Vector2(385, 175)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_fva2v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985162760]
-position = Vector2(385, 175)
+position = Vector2(-8, 33)
 shape = SubResource("CircleShape2D_nthwl")

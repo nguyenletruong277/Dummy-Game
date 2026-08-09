@@ -2,17 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://d1ie8weuli7j8" path="res://assets/map_elements/cinema/projectionScreen.png" id="1_xtnhx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_533hf"]
-size = Vector2(168, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbsvu"]
+size = Vector2(173, 26)
 
 [node name="StaticProjectionScreen" type="StaticBody2D" unique_id=1783520488]
 y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2034565815]
-position = Vector2(385, 175)
 texture = ExtResource("1_xtnhx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1985162760]
-position = Vector2(381, 171)
-shape = SubResource("RectangleShape2D_533hf")
+position = Vector2(-2.5, 3)
+shape = SubResource("RectangleShape2D_bbsvu")
