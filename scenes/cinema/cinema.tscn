@@ -7,12 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dp7dpl4usghl4" path="res://entities/environment_objects/cinema/static_projector.tscn" id="5_hp316"]
 [ext_resource type="PackedScene" uid="uid://q224qy6hvee1" path="res://entities/environment_objects/cinema/static_popcorn.tscn" id="6_oolpu"]
 [ext_resource type="PackedScene" uid="uid://bupcmd405af6j" path="res://entities/environment_objects/cinema/static_speaker.tscn" id="7_vvst7"]
-[ext_resource type="PackedScene" uid="uid://csljpslyj8ki8" path="res://entities/environment_objects/cinema/static_projectionScreen.tscn" id="8_yno6l"]
+[ext_resource type="PackedScene" uid="uid://cpelqgty6f1xx" path="res://entities/interactable_objects/cinema/project_screen.tscn" id="8_38751"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o77b7"]
 texture = ExtResource("1_0ug0c")
 0:0/size_in_atlas = Vector2i(16, 12)
 0:0/0 = 0
+0:0/0/y_sort_origin = 8
 
 [sub_resource type="TileSet" id="TileSet_gx3r7"]
 sources/0 = SubResource("TileSetAtlasSource_o77b7")
@@ -21,17 +22,22 @@ sources/0 = SubResource("TileSetAtlasSource_o77b7")
 texture = ExtResource("2_o77b7")
 8:0/size_in_atlas = Vector2i(4, 1)
 8:0/0 = 0
+8:0/0/y_sort_origin = 1
 8:1/size_in_atlas = Vector2i(4, 5)
 8:1/0 = 0
+8:1/0/y_sort_origin = 1
 8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24.057892, -40.559143, 17.889206, -40.867577, 18.197647, 40.559143, -24.366318, 39.3254)
 4:6/size_in_atlas = Vector2i(4, 5)
 4:6/0 = 0
+4:6/0/y_sort_origin = 1
 4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(22.515732, -31.922977, 33.002502, -31.614542, 32.077194, 34.698883, 16.335884, 34.996033, -32.69406, 34.698883, -32.077194, -31.614542, -24.674759, -32.84828)
 8:6/size_in_atlas = Vector2i(4, 5)
 8:6/0 = 0
+8:6/0/y_sort_origin = 1
 8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24.057892, -40.559143, 17.889206, -40.867577, 18.197647, 35.007317, -32.69406, 34.698883, -32.077194, -31.614542, -24.674759, -32.84828)
 2:6/size_in_atlas = Vector2i(2, 5)
 2:6/0 = 0
+2:6/0/y_sort_origin = 1
 
 [sub_resource type="TileSet" id="TileSet_woj7t"]
 physics_layer_0/collision_layer = 1
@@ -68,5 +74,7 @@ position = Vector2(105, 229)
 [node name="StaticSpeaker" parent="EnvironmentObjects" unique_id=1009416275 instance=ExtResource("7_vvst7")]
 position = Vector2(540, 108)
 
-[node name="StaticProjectionScreen" parent="EnvironmentObjects" unique_id=1964795751 instance=ExtResource("8_yno6l")]
-position = Vector2(382, 57)
+[node name="ProjectScreen" parent="EnvironmentObjects" unique_id=1019912950 instance=ExtResource("8_38751")]
+position = Vector2(348, 80)
+collision_layer = 4
+collision_mask = 0

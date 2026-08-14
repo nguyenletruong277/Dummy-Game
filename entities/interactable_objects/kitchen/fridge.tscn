@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bi06o8ndspidg"]
+
+[ext_resource type="Script" uid="uid://ccfl6ugpojbut" path="res://entities/interactable_objects/kitchen/fridge.gd" id="1_1oq75"]
+[ext_resource type="Texture2D" uid="uid://bg0amnn62l7u3" path="res://assets/map_elements/kitchen/fridge.png" id="1_gdcm8"]
+[ext_resource type="Material" uid="uid://cu37r0pfcmejo" path="res://assets/shaders/outline_material.tres" id="2_mqj22"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1oq75"]
+size = Vector2(80, 93)
+
+[node name="Fridge" type="Area2D" unique_id=1323941585 node_paths=PackedStringArray("target_sprite")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_1oq75")
+outline_material = ExtResource("2_mqj22")
+target_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=428282345]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_gdcm8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1391444300]
+position = Vector2(-3, 27.5)
+shape = SubResource("RectangleShape2D_1oq75")

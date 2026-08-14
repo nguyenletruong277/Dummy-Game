@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cpelqgty6f1xx"]
+
+[ext_resource type="Script" uid="uid://cuji4fk0vjj44" path="res://entities/interactable_objects/cinema/project_screen.gd" id="1_ujfxr"]
+[ext_resource type="Texture2D" uid="uid://d1ie8weuli7j8" path="res://assets/map_elements/cinema/projectionScreen.png" id="1_y7tbx"]
+[ext_resource type="Material" uid="uid://cu37r0pfcmejo" path="res://assets/shaders/outline_material.tres" id="2_xbmpg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujfxr"]
+size = Vector2(173, 26)
+
+[node name="ProjectScreen" type="Area2D" unique_id=1019912950 node_paths=PackedStringArray("target_sprite")]
+script = ExtResource("1_ujfxr")
+outline_material = ExtResource("2_xbmpg")
+target_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=568274769]
+texture = ExtResource("1_y7tbx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=445792786]
+position = Vector2(-2.5, 3)
+shape = SubResource("RectangleShape2D_ujfxr")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://wmc5gnhyapso" path="res://assets/map_elements/kitchen/ground.png" id="1_lmija"]
 [ext_resource type="Texture2D" uid="uid://c5yobjq6cdthw" path="res://assets/map_elements/sprites/wall/outside/outside4.PNG" id="2_madu1"]
-[ext_resource type="PackedScene" uid="uid://brd0wajf1o8jn" path="res://entities/environment_objects/kitchen/static_fridge.tscn" id="3_7wsgf"]
+[ext_resource type="PackedScene" uid="uid://bi06o8ndspidg" path="res://entities/interactable_objects/kitchen/fridge.tscn" id="3_7wsgf"]
 [ext_resource type="PackedScene" uid="uid://c2rnucuf20mo6" path="res://entities/environment_objects/garden/tree2.tscn" id="4_yi3jr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o4r6q"]
@@ -51,8 +51,8 @@ tile_set = SubResource("TileSet_n8gdj")
 [node name="EnvironmentObjects" type="Node2D" parent="." unique_id=1695353313]
 y_sort_enabled = true
 
-[node name="StaticFridge" parent="EnvironmentObjects" unique_id=1419432170 instance=ExtResource("3_7wsgf")]
-position = Vector2(269, 186)
+[node name="Fridge" parent="EnvironmentObjects" unique_id=1323941585 instance=ExtResource("3_7wsgf")]
+position = Vector2(143, 77)
 
 [node name="Tree2" parent="EnvironmentObjects" unique_id=333749313 instance=ExtResource("4_yi3jr")]
 position = Vector2(1047, 444)

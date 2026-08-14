@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://kr868ruuhbfx"]
 
 [ext_resource type="PackedScene" uid="uid://npr27wbopp3v" path="res://scenes/kitchen/kitchen.tscn" id="2_41f7g"]
+[ext_resource type="PackedScene" uid="uid://qh2cxdahrj77" path="res://entities/interactable_objects/living_room/television.tscn" id="3_stvw0"]
 [ext_resource type="PackedScene" uid="uid://c2iby87qh8d8l" path="res://entities/player/player.tscn" id="3_vkueb"]
 
 [node name="Sandbox" type="Node2D" unique_id=1537662398]
@@ -11,3 +12,6 @@ position = Vector2(-14, 66)
 
 [node name="Player" parent="." unique_id=1033218137 instance=ExtResource("3_vkueb")]
 position = Vector2(387, 264)
+
+[node name="Television" parent="." unique_id=346674091 instance=ExtResource("3_stvw0")]
+position = Vector2(438, 456)

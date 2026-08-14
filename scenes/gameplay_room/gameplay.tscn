@@ -60,6 +60,14 @@ metadata/_edit_lock_ = true
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=565856959]
 y_sort_enabled = true
 
+[node name="Spawn3" type="Marker2D" parent="SpawnPoints" unique_id=1955552536]
+y_sort_enabled = true
+position = Vector2(675, 976)
+
+[node name="Spawn2" type="Marker2D" parent="SpawnPoints" unique_id=1951752270]
+y_sort_enabled = true
+position = Vector2(1026, 995)
+
 [node name="Spawn1" type="Marker2D" parent="SpawnPoints" unique_id=1927337715]
 y_sort_enabled = true
-position = Vector2(831, 906)
+position = Vector2(661, 782)

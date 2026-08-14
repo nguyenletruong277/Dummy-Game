@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cr7kufr1i8yu7" path="res://assets/map_elements/sprites/wall/outside/outside3.PNG" id="2_j02gd"]
 [ext_resource type="PackedScene" uid="uid://ckqmgoqfaq273" path="res://entities/environment_objects/living_room/static_speaker.tscn" id="3_tjl2r"]
 [ext_resource type="PackedScene" uid="uid://cbeits0rrywq7" path="res://entities/environment_objects/living_room/static_sofa.tscn" id="4_t80q3"]
-[ext_resource type="PackedScene" uid="uid://2bgxlv4uti5w" path="res://entities/environment_objects/living_room/static_television.tscn" id="5_0hj4s"]
 [ext_resource type="PackedScene" uid="uid://c2rnucuf20mo6" path="res://entities/environment_objects/garden/tree2.tscn" id="6_8ddjr"]
+[ext_resource type="PackedScene" uid="uid://qh2cxdahrj77" path="res://entities/interactable_objects/living_room/television.tscn" id="6_tjl2r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2t2pm"]
 texture = ExtResource("1_8ddjr")
@@ -57,8 +57,11 @@ position = Vector2(92, 507)
 [node name="StaticSofa" parent="EnvironmentObjects" unique_id=1496543066 instance=ExtResource("4_t80q3")]
 position = Vector2(255, 468)
 
-[node name="StaticTelevision" parent="EnvironmentObjects" unique_id=1419432170 instance=ExtResource("5_0hj4s")]
-position = Vector2(266, 193)
-
 [node name="Tree2" parent="EnvironmentObjects" unique_id=1452623560 instance=ExtResource("6_8ddjr")]
 position = Vector2(465, 514)
+
+[node name="InteractableObjects" type="Node2D" parent="." unique_id=585136703]
+
+[node name="Television" parent="InteractableObjects" unique_id=346674091 instance=ExtResource("6_tjl2r")]
+position = Vector2(269, 203)
+scale = Vector2(1.600881, 0.85378575)

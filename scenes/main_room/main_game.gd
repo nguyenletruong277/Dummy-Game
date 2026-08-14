@@ -64,8 +64,10 @@ func _teleport_to_current_map() -> void:
 		# Tìm node SpawnPoints trong map đó
 		var spawn_container = current_map.get_node_or_null("SpawnPoints")
 		if spawn_container and spawn_container.get_child_count() > 0:
-			# Lấy vị trí Marker2D đầu tiên tìm thấy
-			var spawn_pos = spawn_container.get_child(0).global_position
+			# Lấy tất cả vị trí Marker2D tìm thấy
+			var spawn_pos: Array[Vector2] = []
+			for point in spawn_container.get_children():
+				spawn_pos.append(point.global_position)
 			$MultiplayerSpawner.move_all_players_to(spawn_pos)
 
 func _on_ready_pressed() -> void:

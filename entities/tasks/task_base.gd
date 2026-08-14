@@ -44,6 +44,6 @@ func _report_to_server() -> void:
 	if not multiplayer.has_multiplayer_peer():
 		return
 	if multiplayer.is_server():
-		ServerManager.validate_and_complete_task(multiplayer.get_unique_id(), _task_id)
+		ServerManager.complete_task_as_host(_task_id)
 	else:
-		ServerManager.rpc_id(1, "validate_and_complete_task", multiplayer.get_unique_id(), _task_id)
+		ServerManager.rpc_id(1, "request_complete_task", _task_id)
