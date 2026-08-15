@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bngetiy73u5jc"]
+
+[ext_resource type="Script" uid="uid://c1sswjj43m18r" path="res://entities/interactable_objects/kitchen/sink_cooker.gd" id="1_lairp"]
+[ext_resource type="Texture2D" uid="uid://bp5mw4444a36w" path="res://assets/map_elements/kitchen/sink_cooker.png" id="2_bkv2h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ealr"]
+radius = 45.044422
+
+[node name="SinkCooker" type="Area2D" unique_id=346674091]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_lairp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1204141071]
+texture = ExtResource("2_bkv2h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1640508654]
+position = Vector2(9, 9)
+shape = SubResource("CircleShape2D_8ealr")
