@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://do1rcresleynj"]
+
+[ext_resource type="Script" uid="uid://cfbi2spug0hja" path="res://entities/tasks/minigames/task_sorting_shoes.gd" id="1_h7pw8"]
+
+[node name="TaskSortingShoes" type="Control" unique_id=583762675]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h7pw8")
+metadata/_custom_type_script = "uid://bw6d0j2u4wcqo"
+
+[node name="Panel" type="Panel" parent="." unique_id=1652091647]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1466670153]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -46.5
+offset_right = 60.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="Panel/VBoxContainer" unique_id=796567772]
+layout_mode = 2
+text = "Sorting Shoes"
+
+[node name="StatusLabel" type="Label" parent="Panel/VBoxContainer" unique_id=1274203151]
+layout_mode = 2
+text = "There are 3 pairs of shoes lying around!"
+
+[node name="Shoe1Button" type="Button" parent="Panel/VBoxContainer" unique_id=187249990]
+layout_mode = 2
+text = "Put away the sneakers"
+
+[node name="Shoe2Button" type="Button" parent="Panel/VBoxContainer" unique_id=1912849897]
+layout_mode = 2
+text = "Put away the high heels"
+
+[node name="Shoe3Button" type="Button" parent="Panel/VBoxContainer" unique_id=1291281313]
+layout_mode = 2
+text = "Put away the slippers"
+
+[node name="CompleteButton" type="Button" parent="Panel/VBoxContainer" unique_id=703162758]
+layout_mode = 2
+text = "Làm xong task"
+
+[node name="CancelButton" type="Button" parent="Panel/VBoxContainer" unique_id=1074650951]
+layout_mode = 2
+text = "Đóng/Hủy"

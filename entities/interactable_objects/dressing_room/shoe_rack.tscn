@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bn8gt1u8vmwxn"]
+
+[ext_resource type="Script" uid="uid://fxl8edjwxq7n" path="res://entities/interactable_objects/dressing_room/shoe_rack.gd" id="1_vlik7"]
+[ext_resource type="Texture2D" uid="uid://jj0opeoxp82d" path="res://assets/map_elements/dressingRoom/shoe_rack.PNG" id="2_d6aoc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ealr"]
+radius = 43.185646
+
+[node name="ShoeRack" type="Area2D" unique_id=346674091]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_vlik7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1204141071]
+texture = ExtResource("2_d6aoc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1640508654]
+position = Vector2(-9, 21)
+shape = SubResource("CircleShape2D_8ealr")
