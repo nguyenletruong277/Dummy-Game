@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TaskResource" format=3 uid="uid://co3j6fm0b57ie"]
 
-[ext_resource type="PackedScene" uid="uid://cxgyujvetemd6" path="res://entities/tasks/minigames/task_boiling_water.tscn" id="1_4fsv0"]
+[ext_resource type="PackedScene" uid="uid://cxgyujvetemd6" path="res://entities/tasks/minigames/kitchen/task_boiling_water.tscn" id="1_4fsv0"]
 [ext_resource type="Script" uid="uid://b28w3eeo05fdr" path="res://entities/tasks/task_resource.gd" id="1_rdnk4"]
 
 [resource]

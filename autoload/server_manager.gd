@@ -185,7 +185,7 @@ func _try_complete_task(player_id: int, task_id: String) -> void:
 	
 	TaskManager.complete_task(player_id, task_id)
 
-# The server just updated ITS OWN copy of this player's done_tasks.
+	# The server just updated ITS OWN copy of this player's done_tasks.
 	# For the host that's the same PlayerManager instance the checklist
 	# reads from, so it refreshes automatically. Every other client's
 	# PlayerManager is a separate instance that never got touched — tell
@@ -194,6 +194,10 @@ func _try_complete_task(player_id: int, task_id: String) -> void:
 		receive_task_done(task_id)
 	else:
 		rpc_id(player_id, "receive_task_done", task_id)
+	
+	# Đồng bộ thanh tiến trình global tới TẤT CẢ clients
+	_sync_task_progress.rpc(TaskManager.completed_tasks_count, TaskManager.total_tasks_count)
+
 
 # ==========================================
 # CLIENT -> SERVER: KILL LOGIC
@@ -307,3 +311,15 @@ func _apply_ready(peer_id: int, is_ready:bool) -> void:
 func receive_task_done(task_id: String) -> void:
 	var my_id = multiplayer.get_unique_id()
 	PlayerManager.add_done_task(my_id, task_id)
+
+
+## Đồng bộ tiến trình task global từ Server tới tất cả Clients
+@rpc("authority", "call_local", "reliable")
+func _sync_task_progress(completed: int, total: int) -> void:
+	TaskManager.completed_tasks_count = completed
+	TaskManager.total_tasks_count = total
+	var progress := 0.0
+	if total > 0:
+		progress = float(completed) / float(total)
+	TaskManager.total_progress_updated.emit(progress)
+	print("[ServerManager] Synced global task progress: %d/%d (%.0f%%)" % [completed, total, progress * 100])

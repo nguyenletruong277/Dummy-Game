@@ -9,6 +9,7 @@ extends TaskBase
 @onready var boil_timer: Timer = $BoilTimer # Kéo node Timer vào đây
 
 var has_water: bool = false
+var _is_cancelled: bool = false
 
 func _ready() -> void:
 	# Bắt sự kiện bấm nút
@@ -38,6 +39,7 @@ func _on_fill_water_pressed() -> void:
 # Xử lý khi bấm nút "Bật bếp"
 func _on_boil_pressed() -> void:
 	boil_button.disabled = true
+	cancel_button.disabled = true # Khóa nút hủy khi đang đun
 	status_label.text = "Trạng thái: Đang đun nước sùng sục..."
 	
 	# Bắt đầu đun trong 5 giây
@@ -45,14 +47,22 @@ func _on_boil_pressed() -> void:
 
 # Xử lý khi Timer chạy hết 5 giây (Nước đã sôi)
 func _on_boil_timer_timeout() -> void:
+	if _is_cancelled:
+		return # Người chơi đã hủy, bỏ qua
+	
 	status_label.text = "Trạng thái: NƯỚC ĐÃ SÔI! HOÀN THÀNH!"
 	print("[Task T-02] Nước đã sôi, gọi hàm complete() báo Server!")
 	
 	# Đợi khoảng 1.5 giây để người chơi nhìn thấy chữ hoàn thành rồi tự đóng UI
 	await get_tree().create_timer(1.5).timeout
-	complete() # Gọi hàm complete() gốc của Leader để chốt task
+	
+	# Kiểm tra node còn tồn tại và chưa bị hủy trước khi gọi complete
+	if is_inside_tree() and not _is_cancelled:
+		complete() # Gọi hàm complete() gốc của TaskBase để chốt task
 
 # Xử lý khi bấm nút "Hủy"
 func _on_cancel_pressed() -> void:
 	print("[Task T-02] Đã bấm hủy Task")
+	_is_cancelled = true
+	boil_timer.stop() # Dừng timer nếu đang đun
 	cancel()

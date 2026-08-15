@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cxgyujvetemd6"]
 
-[ext_resource type="Script" uid="uid://d0m8ynaaxke24" path="res://entities/tasks/minigames/task_boiling_water.gd" id="1_0vgqf"]
+[ext_resource type="Script" uid="uid://d0m8ynaaxke24" path="res://entities/tasks/minigames/kitchen/task_boiling_water.gd" id="1_n44w8"]
 
 [node name="TaskBoilingWater" type="Control" unique_id=583762675]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0vgqf")
+script = ExtResource("1_n44w8")
 metadata/_custom_type_script = "uid://bw6d0j2u4wcqo"
 
 [node name="Panel" type="Panel" parent="." unique_id=1652091647]
@@ -42,11 +42,11 @@ layout_mode = 2
 
 [node name="FillWaterButton" type="Button" parent="Panel/VBoxContainer" unique_id=187249990]
 layout_mode = 2
-text = "Làm xong task"
+text = "Hứng nước"
 
 [node name="BoilButton" type="Button" parent="Panel/VBoxContainer" unique_id=72484230]
 layout_mode = 2
-text = "Làm xong task"
+text = "Bật bếp"
 
 [node name="CancelButton" type="Button" parent="Panel/VBoxContainer" unique_id=1074650951]
 layout_mode = 2
