@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ca423tcxit40u"]
+
+[ext_resource type="Texture2D" uid="uid://baabnni37s4sg" path="res://assets/map_elements/toilet/toilet.png" id="1_5iid4"]
+[ext_resource type="Script" uid="uid://bee025n6rj4os" path="res://entities/interactable_objects/toilet/toilet.gd" id="1_8tbb3"]
+[ext_resource type="Material" uid="uid://cu37r0pfcmejo" path="res://assets/shaders/outline_material.tres" id="2_82cp2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8tbb3"]
+radius = 31.400637
+
+[node name="Toilet" type="Area2D" unique_id=1136932949 node_paths=PackedStringArray("target_sprite")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_8tbb3")
+outline_material = ExtResource("2_82cp2")
+target_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1680479986]
+scale = Vector2(2, 2)
+texture = ExtResource("1_5iid4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1428886456]
+position = Vector2(23, 26)
+shape = SubResource("CircleShape2D_8tbb3")

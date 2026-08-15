@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cokavcr6v1ue7"]
+
+[ext_resource type="Script" uid="uid://ct4lfojoyd33p" path="res://entities/interactable_objects/training_room/dumbell.gd" id="1_16onc"]
+[ext_resource type="Texture2D" uid="uid://b15b17xch5ips" path="res://assets/map_elements/trainingRoom/dumbbell.png" id="1_c8st7"]
+[ext_resource type="Material" uid="uid://cu37r0pfcmejo" path="res://assets/shaders/outline_material.tres" id="2_5lap7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_16onc"]
+radius = 19.104973
+
+[node name="Dumbell" type="Area2D" unique_id=1504518065 node_paths=PackedStringArray("target_sprite")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_16onc")
+outline_material = ExtResource("2_5lap7")
+target_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=544432858]
+scale = Vector2(2, 2)
+texture = ExtResource("1_c8st7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2015983266]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_16onc")

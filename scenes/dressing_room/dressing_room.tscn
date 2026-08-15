@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://vh181fk4cexl" path="res://assets/map_elements/sprites/wall/wall2.PNG" id="7_ltbhp"]
 [ext_resource type="Texture2D" uid="uid://bl1lu06ro8mkk" path="res://assets/map_elements/sprites/wall/outside/outside8.PNG" id="9_5opem"]
 [ext_resource type="Texture2D" uid="uid://dlap6v1dce83k" path="res://assets/map_elements/sprites/wall/outside/outside9.PNG" id="10_bncge"]
-[ext_resource type="PackedScene" uid="uid://36rw7ralfrhs" path="res://entities/environment_objects/dressing_room/static_shoe_rack.tscn" id="10_x3jmi"]
 [ext_resource type="Texture2D" uid="uid://j70tx5cw3s48" path="res://assets/map_elements/sprites/wall/doorwall/dw5.PNG" id="11_1esd1"]
 [ext_resource type="PackedScene" uid="uid://d4mhh2yg378br" path="res://entities/environment_objects/dressing_room/static_tree.tscn" id="11_m13r3"]
+[ext_resource type="PackedScene" uid="uid://bvn5jw5a8i6qo" path="res://entities/interactable_objects/dressing_room/shoe_rack.tscn" id="11_x3jmi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ydf2k"]
 texture = ExtResource("1_glr7i")
@@ -168,8 +168,10 @@ tile_set = SubResource("TileSet_qwvef")
 [node name="EnvironmentObjects" type="Node2D" parent="." unique_id=1660323231]
 y_sort_enabled = true
 
-[node name="StaticShoeRack" parent="EnvironmentObjects" unique_id=1783520488 instance=ExtResource("10_x3jmi")]
-position = Vector2(289, 244)
-
 [node name="StaticTree" parent="EnvironmentObjects" unique_id=1115639416 instance=ExtResource("11_m13r3")]
 position = Vector2(618, 328)
+
+[node name="ShoeRack" parent="EnvironmentObjects" unique_id=966702454 instance=ExtResource("11_x3jmi")]
+position = Vector2(290, 246)
+collision_layer = 4
+collision_mask = 0

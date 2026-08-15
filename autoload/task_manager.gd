@@ -65,11 +65,11 @@ func get_all_task_ids() -> Array[String]:
 ## (ServerManager) after it has validated the task belongs to the player
 ## and hasn't already been completed. TaskManager itself does no validation.
 func complete_task(player_id: int, task_id: String) -> void:
-	# Get the actual task
-	var task := get_task_info(task_id)
-	if task:
-		task.is_completed = true
-		
+	# Get the actual task -- Not assign to whole server (many players can do same task now)
+	#var task := get_task_info(task_id)
+	#if task:
+		#task.is_completed = true
+		#
 	completed_tasks_count += 1
 	var progress = float(completed_tasks_count) / float(max(1, total_tasks_count))
 
@@ -111,7 +111,8 @@ func open_task_ui(task_id: String) -> void:
 		push_error("[TaskManager] Không tìm thấy Task Resource cho ID: ", task_id)
 		return
 		
-	if task_res.is_completed:
+	var my_id := multiplayer.get_unique_id() # Check per player
+	if task_id in PlayerManager.get_done_tasks(my_id):
 		print("[TaskManager] Task này đã hoàn thành rồi: ", task_id)
 		return
 

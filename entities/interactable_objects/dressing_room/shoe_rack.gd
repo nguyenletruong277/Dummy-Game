@@ -1,6 +1,6 @@
 extends InteractableObject
 
-@export var task_id: String = "task_living_room"
+@export var task_id: String = "task_dressing_room"
 
 func _ready() -> void:
 	super._ready() # Gọi hàm _ready của InteractableObject

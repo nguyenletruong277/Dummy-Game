@@ -107,9 +107,10 @@ func assign_tasks(player_ids: Array = PlayerManager.players_state.keys()) -> voi
 	
 	#Get all tasks
 	var fixed_task_ids: Array[String] = TaskManager.get_all_task_ids()
+	print("[DEBUG] crewmate_count=", crewmate_count, " fixed_task_ids.size()=", fixed_task_ids.size())
 	# Total number of tasks to complete this match (used for the progress bar)
-	TaskManager.total_tasks_count = crewmate_count * tasks_per_crewmate
-
+	TaskManager.total_tasks_count = crewmate_count * fixed_task_ids.size()
+	print("[DEBUG] total_tasks_count set to: ", TaskManager.total_tasks_count)
 	for id in player_ids:
 		var role = PlayerManager.get_role(id)
 		var assigned_task_ids: Array[String] = []
@@ -117,13 +118,13 @@ func assign_tasks(player_ids: Array = PlayerManager.players_state.keys()) -> voi
 		if role == Enums.Role.CREWMATE:
 			## Pick random task IDs from TaskManager
 			#assigned_task_ids = TaskManager.get_random_task_ids(tasks_per_crewmate)
-			assigned_task_ids = fixed_task_ids
+			assigned_task_ids = fixed_task_ids.duplicate()
 		else:
 			# Impostors get fake task IDs (or their own dedicated fake task list)
 			assigned_task_ids = ["fake_task_1"]
 		
 		# Update the player's task list via PlayerManager (not a direct write)
-		# PlayerManager.set_assigned_tasks(id, assigned_task_ids)
+		PlayerManager.set_assigned_tasks(id, assigned_task_ids)
 		
 		# ONLY SEND THE ID LIST OVER THE NETWORK (great bandwidth optimization!)
 		if id == Constants.HOST_ID:
@@ -171,6 +172,15 @@ func _try_complete_task(player_id: int, task_id: String) -> void:
 	
 	TaskManager.complete_task(player_id, task_id)
 
+# The server just updated ITS OWN copy of this player's done_tasks.
+	# For the host that's the same PlayerManager instance the checklist
+	# reads from, so it refreshes automatically. Every other client's
+	# PlayerManager is a separate instance that never got touched — tell
+	# them explicitly so their own players_state_updated signal fires.
+	if player_id == Constants.HOST_ID:
+		receive_task_done(task_id)
+	else:
+		rpc_id(player_id, "receive_task_done", task_id)
 
 # ==========================================
 # CLIENT-SIDE RPC HANDLERS
@@ -215,3 +225,8 @@ func _apply_ready(peer_id: int, is_ready:bool) -> void:
 	# only run it locally on the server and never reach other clients,
 	# even though it's annotated @rpc.
 	_sync_players_state.rpc(PlayerManager.players_state)
+
+@rpc("authority", "call_remote", "reliable")
+func receive_task_done(task_id: String) -> void:
+	var my_id = multiplayer.get_unique_id()
+	PlayerManager.add_done_task(my_id, task_id)

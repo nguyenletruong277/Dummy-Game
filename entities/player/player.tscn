@@ -38,19 +38,23 @@ motion_mode = 1
 script = ExtResource("1_fkugw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1032508739]
+y_sort_enabled = true
+position = Vector2(0, -1)
 scale = Vector2(0.5, 0.49421966)
 sprite_frames = SubResource("SpriteFrames_8ealr")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=729140397]
-position = Vector2(2, 28)
+position = Vector2(4, 16)
 shape = SubResource("CircleShape2D_8ealr")
 
 [node name="InteractionDetector" type="Area2D" parent="." unique_id=1646571359]
+position = Vector2(2, 15)
 collision_layer = 0
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionDetector" unique_id=67306943]
+position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_fb625")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1799966808]

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c3nbt7sqxvmsq"]
+
+[ext_resource type="Texture2D" uid="uid://ciw8l06bk4d5m" path="res://assets/map_elements/artRoom/picture.png" id="1_hmg1w"]
+[ext_resource type="Script" uid="uid://dtbrs3munqneq" path="res://entities/interactable_objects/art_room/picture.gd" id="1_wisle"]
+[ext_resource type="Material" uid="uid://cu37r0pfcmejo" path="res://assets/shaders/outline_material.tres" id="2_1ltt6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wisle"]
+radius = 25.0
+
+[node name="Picture" type="Area2D" unique_id=1777196172 node_paths=PackedStringArray("target_sprite")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_wisle")
+outline_material = ExtResource("2_1ltt6")
+target_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1342565018]
+y_sort_enabled = true
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_hmg1w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=81752559]
+position = Vector2(-2, 47)
+shape = SubResource("CircleShape2D_wisle")

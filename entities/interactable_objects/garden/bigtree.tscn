@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://k46psq4eusou"]
+
+[ext_resource type="Script" uid="uid://t71e5p5j7sk7" path="res://entities/interactable_objects/garden/bigtree.gd" id="1_f2ml5"]
+[ext_resource type="Texture2D" uid="uid://drp2y4mjd45sp" path="res://assets/map_elements/garden/tree3.png" id="1_h5dhr"]
+[ext_resource type="Material" uid="uid://cu37r0pfcmejo" path="res://assets/shaders/outline_material.tres" id="2_bl1bb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cl1xn"]
+radius = 30.066593
+
+[node name="Bigtree" type="Area2D" unique_id=504185287 node_paths=PackedStringArray("target_sprite")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_f2ml5")
+outline_material = ExtResource("2_bl1bb")
+target_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=756234166]
+scale = Vector2(3, 3)
+texture = ExtResource("1_h5dhr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=533198696]
+position = Vector2(-1, 125)
+shape = SubResource("CircleShape2D_cl1xn")
