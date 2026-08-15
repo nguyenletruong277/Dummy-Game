@@ -1,11 +1,20 @@
 [gd_scene format=3 uid="uid://c2iby87qh8d8l"]
 
 [ext_resource type="Script" uid="uid://d3t1irl6apaf3" path="res://entities/player/player.gd" id="1_fkugw"]
+[ext_resource type="Texture2D" uid="uid://balv6wxbl1kib" path="res://assets/textures/rip.png" id="2_bls4j"]
 [ext_resource type="Texture2D" uid="uid://c8m5vfupbg04o" path="res://assets/textures/w_l_2.png" id="4_fkugw"]
 [ext_resource type="Texture2D" uid="uid://bqw7325hki7wk" path="res://assets/textures/w_l_3.png" id="5_8fjmc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ealr"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bls4j")
+}],
+"loop": 1,
+"name": &"rip",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("4_fkugw")
@@ -19,6 +28,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ealr"]
+radius = 21.931713
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fb625"]
 radius = 45.276924
@@ -32,7 +42,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c23x7"]
-radius = 45.0
+radius = 58.137768
 
 [node name="Player" type="CharacterBody2D" unique_id=1033218137 groups=["players"]]
 y_sort_enabled = true
@@ -67,7 +77,6 @@ position_smoothing_enabled = true
 replication_config = SubResource("SceneReplicationConfig_gd5fs")
 
 [node name="KillRadar" type="Area2D" parent="." unique_id=236970318]
-position = Vector2(37.587646, 1.5619812)
 collision_layer = 0
 collision_mask = 2
 

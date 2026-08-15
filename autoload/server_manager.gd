@@ -21,6 +21,7 @@ extends Node
 #    "PlayerManager owns all writes" decision.
 # ==========================================
 
+
 # Number of Impostors (configurable by the Host in the Lobby)
 var num_impostors: int = 1
 # Number of tasks assigned to each Crewmate per match
@@ -193,6 +194,70 @@ func _try_complete_task(player_id: int, task_id: String) -> void:
 		receive_task_done(task_id)
 	else:
 		rpc_id(player_id, "receive_task_done", task_id)
+
+# ==========================================
+# CLIENT -> SERVER: KILL LOGIC
+# ==========================================
+
+## Called by an Impostor requesting to kill a Crewmate.
+## Server validates roles, alive states, syncs player data, and checks win conditions.
+@rpc("any_peer", "call_local", "reliable")
+func request_kill(victim_id: int) -> void:
+	if not multiplayer.is_server():
+		return
+	
+	var sender_id = multiplayer.get_remote_sender_id()
+	if sender_id == 0:
+		sender_id = multiplayer.get_unique_id()
+		
+	_try_kill_player(sender_id, victim_id)
+
+
+## Host-local equivalent of request_kill
+func kill_player_as_host(victim_id: int) -> void:
+	if not multiplayer.is_server():
+		return
+	_try_kill_player(Constants.HOST_ID, victim_id)
+
+
+func _try_kill_player(killer_id: int, victim_id: int) -> void:
+	# 1. Validate killer
+	if not PlayerManager.players_state.has(killer_id):
+		push_warning("[ServerManager] Kill request from unknown player: %d" % killer_id)
+		return
+	if not PlayerManager.is_player_alive(killer_id):
+		push_warning("[ServerManager] Dead player %d tried to kill." % killer_id)
+		return
+	if PlayerManager.get_role(killer_id) != Enums.Role.IMPOSTOR:
+		push_warning("[ServerManager] Non-impostor %d tried to kill." % killer_id)
+		return
+
+	# 2. Validate victim
+	if not PlayerManager.players_state.has(victim_id):
+		push_warning("[ServerManager] Player %d tried to kill non-existent victim: %d" % [killer_id, victim_id])
+		return
+	if not PlayerManager.is_player_alive(victim_id):
+		push_warning("[ServerManager] Player %d tried to kill already dead victim: %d" % [killer_id, victim_id])
+		return
+	if PlayerManager.get_role(victim_id) == Enums.Role.IMPOSTOR:
+		push_warning("[ServerManager] Impostor %d tried to kill another Impostor: %d" % [killer_id, victim_id])
+		return
+	
+	# 3. Apply state change: victim is now dead
+	print("[ServerManager] Killer %d successfully killed victim %d" % [killer_id, victim_id])
+	PlayerManager.set_alive(victim_id, false)
+	
+	# 4. Sync updated state to all clients
+	_sync_players_state.rpc(PlayerManager.players_state)
+	
+	# 5. Check win condition
+	var alive_impostors = PlayerManager.count_alive_by_role(Enums.Role.IMPOSTOR)
+	var alive_crewmates = PlayerManager.count_alive_by_role(Enums.Role.CREWMATE)
+	
+	if alive_impostors >= alive_crewmates:
+		print("[ServerManager] Impostors win by kills! (Impostors: %d, Crewmates: %d)" % [alive_impostors, alive_crewmates])
+		GameManager.end_match(Enums.GameResult.IMPOSTOR_VICTORY_KILLS)
+
 
 # ==========================================
 # CLIENT-SIDE RPC HANDLERS

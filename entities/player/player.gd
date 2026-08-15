@@ -22,6 +22,10 @@ func _ready():
 	outline_material = ShaderMaterial.new()
 	outline_material.shader = load("res://assets/shaders/outline.gdshader")
 	
+	# Listen for state changes (e.g. death) on all machines
+	PlayerManager.players_state_updated.connect(_check_alive_status)
+	_check_alive_status()
+	
 	if is_multiplayer_authority():
 		camera.make_current()
 		
@@ -79,6 +83,12 @@ func _physics_process(_delta):
 	_update_animation()
 
 func _update_animation():
+	var peer_id := name.to_int()
+	if not PlayerManager.is_player_alive(peer_id):
+		if animation.animation != "rip":
+			animation.play("rip")
+		return
+
 	if velocity.length_squared() > 1.0:
 		# Handle walking
 		if animation.animation != "walk" or not animation.is_playing():
@@ -148,8 +158,7 @@ func _on_kill_radar_body_entered(body: Node2D) -> void:
 		
 		print("    + ID: ", target_id, " | Role: ", role, " | Is Alive?: ", is_alive)
 		
-		# Temporarily IGNORING is_alive check for testing purposes
-		if role != Enums.Role.IMPOSTOR:
+		if role != Enums.Role.IMPOSTOR and is_alive:
 			kill_targets_in_range.append(body)
 			print("    => TARGET ACCEPTED! Total targets in range: ", kill_targets_in_range.size())
 
@@ -166,9 +175,9 @@ func _update_closest_kill_target() -> void:
 		if not is_instance_valid(t):
 			continue
 			
-		# --- UNCOMMENT THIS LATER WHEN is_alive IS PROPERLY INITIALIZED ---
-		# if not PlayerManager.is_player_alive(t.name.to_int()):
-		# 	continue
+		# Skip dead players
+		if not PlayerManager.is_player_alive(t.name.to_int()):
+			continue
 			
 		var dist = global_position.distance_to(t.global_position)
 		if dist < closest_dist:
@@ -195,3 +204,47 @@ func set_player_highlight(enable: bool) -> void:
 		animation.material = outline_material # Apply shader to AnimatedSprite2D
 	else:
 		animation.material = null # Revert to default material
+
+
+func _check_alive_status() -> void:
+	var peer_id := name.to_int()
+	if not PlayerManager.is_player_alive(peer_id):
+		_turn_into_dead_body()
+	else:
+		_reset_to_alive()
+
+func _reset_to_alive() -> void:
+	if is_multiplayer_authority():
+		set_physics_process(true)
+	
+	if animation.animation == "rip":
+		animation.animation = "walk"
+		animation.frame = 0
+		animation.stop()
+	
+	collision_layer = 2 # Restore to Layer 2 (Players)
+	
+	if kill_radar and is_multiplayer_authority():
+		var my_role = PlayerManager.get_role(multiplayer.get_unique_id())
+		kill_radar.monitoring = (my_role == Enums.Role.IMPOSTOR)
+
+func _turn_into_dead_body() -> void:
+	# 1. Tắt highlight nếu đang bị nhắm tới
+	set_player_highlight(false)
+	
+	# 2. Khóa di chuyển (chỉ áp dụng trên máy của nạn nhân)
+	if is_multiplayer_authority():
+		set_physics_process(false)
+		velocity = Vector2.ZERO
+		PlayerManager.local_kill_target_updated.emit(-1)
+	
+	# 3. Đổi hình ảnh sang bia mộ rip
+	animation.animation = "rip"
+	animation.play("rip")
+	
+	# 4. Chuyển Collision Layer sang Layer 3 (Interactable) để người khác bấm Report
+	collision_layer = 4 # Layer 3 trong Godot binary là 4
+	
+	# 5. Tắt radar quét kill nếu người chết là Impostor
+	if kill_radar:
+		kill_radar.monitoring = false

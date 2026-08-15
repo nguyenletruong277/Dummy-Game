@@ -184,7 +184,7 @@ func get_role(peer_id: int) -> Enums.Role:
 
 
 func is_player_alive(peer_id: int) -> bool:
-	return players_state.get(peer_id, {}).get("is_alive", false)
+	return players_state.get(peer_id, {}).get("is_alive", true)
 
 func is_player_ready(peer_id: int) -> bool:
 	return players_state.get(peer_id, {}).get("is_ready", false)
