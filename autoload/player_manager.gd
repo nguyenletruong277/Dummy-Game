@@ -9,7 +9,10 @@ extends Node
 # ==========================================
 
 signal role_assigned(role: Enums.Role)
+signal local_role_updated(new_role: Enums.Role)
 signal players_state_updated
+
+signal local_kill_target_updated(target_id: int)
 
 
 # Local player's data (the player sitting in front of this screen)
@@ -110,7 +113,14 @@ func set_ready_state(peer_id: int, is_ready: bool) -> void:
 func set_role(peer_id: int, role: Enums.Role) -> void:
 	if players_state.has(peer_id):
 		players_state[peer_id]["role"] = role
-		role_assigned.emit()
+		
+		# Fixed missing argument: Emit the assigned role to listeners
+		role_assigned.emit(role)
+		
+		# UI INTEGRATION: If the role being set belongs to the local machine,
+		# broadcast a signal so the GameplayUI can update the role icon and Kill button.
+		if peer_id == multiplayer.get_unique_id():
+			local_role_updated.emit(role)
 
 
 ## Sets a player's alive/dead flag (ejection, kill, etc.).

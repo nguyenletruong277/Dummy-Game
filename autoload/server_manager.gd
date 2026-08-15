@@ -42,17 +42,31 @@ func request_local_ready(is_ready:bool) -> void:
 # MATCH (MAIN LOOP)
 # ==========================================
 
+## Calculates the optimal number of Impostors based on lobby size
+func _get_dynamic_impostor_count(total_players: int) -> int:
+	if total_players <= 6:
+		return 1 # 1-6 players = 1 Impostor
+	elif total_players <= 9:
+		return 2 # 7-9 players = 2 Impostors
+	else:
+		return 3 # 10+ players = 3 Impostors
+
 func start_match() -> void:
 	if not multiplayer.is_server():
 		return
 	
 	var player_ids = PlayerManager.players_state.keys()
+	var total_players = player_ids.size()
 	
-	# Guard: need at least 2 players, and impostors can't outnumber/match crewmates
-	if player_ids.size() < 2:
+	# Guard: need at least 2 players
+	if total_players < 2:
 		push_warning("[ServerManager] Not enough players to start a match.")
 		return
-	num_impostors = clamp(num_impostors, 1, player_ids.size() - 1)
+		
+	# Calculate dynamic impostors based on player count, then clamp for safety
+	var calculated_impostors = _get_dynamic_impostor_count(total_players)
+	num_impostors = clamp(calculated_impostors, 1, total_players - 1)
+	# ---------------------------
 	
 	_reset_match_state()
 	assign_roles(player_ids)
@@ -74,24 +88,22 @@ func _reset_match_state() -> void:
 # ==========================================
 
 func assign_roles(player_ids: Array = PlayerManager.players_state.keys()) -> void:
-	player_ids.shuffle() # Shuffle the player list
+	player_ids.shuffle() # Randomize the order of players
 	
 	for i in range(player_ids.size()):
 		var id = player_ids[i]
-		# Use an Enum instead of a raw String
+		# Use an Enum instead of a raw String for strict typing
 		var assigned_role: Enums.Role = Enums.Role.CREWMATE
 		
 		if i < num_impostors:
 			assigned_role = Enums.Role.IMPOSTOR
 		
-		# 1. Update the state on the Server (via PlayerManager, not a direct write)
-		PlayerManager.set_role(id, assigned_role) 
+		# 1. Update the state on the Server (via PlayerManager)
+		# Note: The Host's UI will automatically update here because of the local check we added inside set_role()
+		PlayerManager.set_role(id, assigned_role)
 		
-		# 2. Send the Role to the Client. The Host handles it directly,
-		#    no need for an RPC to itself.
-		if id == Constants.HOST_ID:
-			receive_role(assigned_role)
-		else:
+		# 2. Only send the RPC to remote Clients, preventing redundant calls on the Host machine
+		if id != Constants.HOST_ID:
 			rpc_id(id, "receive_role", assigned_role)
 
 

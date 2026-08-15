@@ -4,6 +4,13 @@
 [ext_resource type="Script" uid="uid://demydplk6cjin" path="res://scenes/main_room/multiplayer_spawner.gd" id="1_dgpx4"]
 [ext_resource type="PackedScene" uid="uid://c2iby87qh8d8l" path="res://entities/player/player.tscn" id="2_cwqi1"]
 [ext_resource type="Script" uid="uid://bd8y0ybfvc53i" path="res://scenes/main_room/gameplay_ui.gd" id="4_07wv4"]
+[ext_resource type="Texture2D" uid="uid://cv00vk5eka6eb" path="res://assets/UI/Imposter_Kill_Buttom.png" id="5_p0xfa"]
+[ext_resource type="Texture2D" uid="uid://cqx5qa83eio8g" path="res://assets/UI/Chicken.png" id="5_yoymf"]
+[ext_resource type="Script" uid="uid://cl0p38qhlg2r" path="res://scenes/main_room/kill_button.gd" id="6_fq35f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ni6oh"]
+font_size = 40
+outline_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
 
 [node name="MainGame" type="Node2D" unique_id=1745043348]
 y_sort_enabled = true
@@ -58,7 +65,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="GameplayUI" type="CanvasLayer" parent="UI" unique_id=2134540081]
-visible = false
 script = ExtResource("4_07wv4")
 
 [node name="ProgressBar" type="ProgressBar" parent="UI/GameplayUI" unique_id=523744191]
@@ -85,10 +91,38 @@ title = "Tasks List"
 layout_mode = 2
 bbcode_enabled = true
 
-[node name="RoleLabel" type="Label" parent="UI/GameplayUI" unique_id=711312311]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
-grow_vertical = 0
+[node name="RoleIcon" type="TextureRect" parent="UI/GameplayUI" unique_id=1973438920]
+anchors_preset = -1
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 145.0
+offset_bottom = 128.0
+texture = ExtResource("5_yoymf")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="KillButton" type="TextureButton" parent="UI/GameplayUI" unique_id=1152430354]
+offset_left = 985.0
+offset_top = 503.0
+offset_right = 1130.0
+offset_bottom = 626.0
+texture_normal = ExtResource("5_p0xfa")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("6_fq35f")
+
+[node name="CooldownTimer" type="Timer" parent="UI/GameplayUI/KillButton" unique_id=1011543195]
+wait_time = 15.0
+one_shot = true
+
+[node name="TimerLabel" type="Label" parent="UI/GameplayUI/KillButton" unique_id=206863433]
+visible = false
+layout_mode = 0
+offset_left = -2.0
+offset_top = -7.0
+offset_right = 145.0
+offset_bottom = 120.0
+text = "10"
+label_settings = SubResource("LabelSettings_ni6oh")
+horizontal_alignment = 1
+vertical_alignment = 1

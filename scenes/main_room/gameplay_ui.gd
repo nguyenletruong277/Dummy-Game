@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 @onready var task_label: RichTextLabel = $TaskContainer/RichTextLabel
-@onready var role_label: Label = $RoleLabel
 
 func _ready() -> void:
 	task_label.bbcode_enabled = true
@@ -12,13 +11,12 @@ func _refresh() -> void:
 	var peer_id := multiplayer.get_unique_id()
 	
 	# Role handle
-	var is_impostor: bool = PlayerManager.get_role(peer_id)
+	# Role handle
+	var is_impostor: bool = PlayerManager.get_role(peer_id) == Enums.Role.IMPOSTOR
 	if is_impostor:
-		role_label.text = "ROLE: IMPOSTOR"
-		role_label.modulate = Color.RED
+		$RoleIcon.texture = load("res://assets/UI/Imposter.png")
 	else:
-		role_label.text = "ROLE: CREWMATE"
-		role_label.modulate = Color.CYAN
+		$RoleIcon.texture = load("res://assets/UI/Chicken.png")
 	
 	# Tasks handle
 	var task_ids: Array = PlayerManager.get_assigned_tasks(peer_id)
