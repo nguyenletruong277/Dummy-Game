@@ -41,6 +41,8 @@ const DISCOVERY_PING: String = "ROOM_DISCOVERY_PING"
 ## "skip" vote during meetings, instead of casting for a player.
 const SKIP_VOTE: int = -1
 
+# --- BUTTONS ---
+const KILL_COOLDOWN: int = 3
 # --- SCENES --- 
 ## Scene paths so we don't have to change every code once we named scenes
 const WAITING_ROOM = "res://scenes/waiting_room/lobby_scene.tscn"

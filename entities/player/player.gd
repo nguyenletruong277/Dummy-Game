@@ -1,5 +1,15 @@
 extends CharacterBody2D
 
+# Dash/Kill mechanics
+@export var lunge_speed: float = 900.0
+@export var lunge_distance: float = 120
+@export var dodge_distance: float = 160 
+@export var lunge_duration: float = 0.1 
+var is_lunging: bool = false
+var facing_direction: Vector2 = Vector2.DOWN 
+var is_dodging: bool = false
+@export var dodge_invuln_duration: float = 0.0
+
 # Movement speed of the player
 @export var SPEED = 300.0
 
@@ -65,24 +75,30 @@ func _enter_tree():
 func _physics_process(_delta):
 	# 1. Only Authority of this Player can handle Movement
 	if is_multiplayer_authority():
-		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		if input_direction != Vector2.ZERO:
-			velocity = input_direction * SPEED
-		else:
-			velocity = Vector2.ZERO
-		move_and_slide()
+		if not is_lunging:
+			var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+			if input_direction != Vector2.ZERO:
+				velocity = input_direction * SPEED
+				facing_direction = input_direction.normalized() # remember last movement direction
+			else:
+				velocity = Vector2.ZERO
+			move_and_slide()
 		
-		if Input.is_action_just_pressed("interact"):
-			execute_interaction()
+			if Input.is_action_just_pressed("interact"):
+				execute_interaction()
 			
-		# Continuously scan for the closest kill target
-		if kill_radar and kill_radar.monitoring:
-			_update_closest_kill_target()
-	
+			# Continuously scan for the closest kill target
+			if kill_radar and kill_radar.monitoring:
+				_update_closest_kill_target()
+		
+
 	# 2. Both machines (Local + Remote) auto update ANIMATION based on VELOCITY
 	_update_animation()
 
 func _update_animation():
+	if is_lunging:
+		return # let _start_lunge's tween/animation calls own this while lunging
+		
 	var peer_id := name.to_int()
 	if not PlayerManager.is_player_alive(peer_id):
 		if animation.animation != "rip":
@@ -248,3 +264,87 @@ func _turn_into_dead_body() -> void:
 	# 5. Tắt radar quét kill nếu người chết là Impostor
 	if kill_radar:
 		kill_radar.monitoring = false
+
+# Called by the Kill Button UI
+func try_kill() -> void:
+	if not is_multiplayer_authority():
+		return
+	if is_lunging:
+		return
+	# Pick any valid, alive target currently inside the kill radar —
+	# no dependency on current_kill_target / the closest-target tracker.
+	
+	_start_dash(true)
+
+func try_dodge() -> void:
+	print(">>> [DODGE] try_dodge called")
+	if not is_multiplayer_authority():
+		print(">>> [DODGE] blocked: not authority")
+		return
+	if is_lunging:
+		print(">>> [DODGE] blocked: already lunging")
+		return
+	var my_role = PlayerManager.get_role(multiplayer.get_unique_id())
+	if my_role == Enums.Role.IMPOSTOR:
+		print(">>> [DODGE] blocked: is impostor")
+		return # dodge is crewmate-only
+	print(">>> [DODGE] starting dash")
+	_start_dash(false) # false = this dash should NOT kill, just move + protect
+	
+func _start_dash(resolve_kill: bool) -> void:
+	is_lunging = true
+	velocity = Vector2.ZERO
+	
+	var start_pos := global_position
+	var dir := facing_direction
+	if dir == Vector2.ZERO:
+		dir = Vector2.DOWN # fallback if somehow never moved yet
+		
+	var distance := lunge_distance if resolve_kill else dodge_distance
+	var lunge_pos := start_pos + dir * distance
+
+	if dir.x != 0:
+		animation.flip_h = dir.x < 0
+	if resolve_kill:
+		animation.animation = "lunge" # replace with your real attack animation name
+		animation.play("lunge")
+	
+	if not resolve_kill:
+		_set_invulnerable(true) # start protection the instant the dodge begins
+		
+	var tween := create_tween()
+	tween.tween_property(self, "global_position", lunge_pos, lunge_duration)
+	tween.tween_callback(func():
+		if resolve_kill:
+			_resolve_kill_after_lunge()
+
+		is_lunging = false
+		animation.animation = "walk"
+		animation.frame = 0
+		animation.stop()
+
+		if not resolve_kill:
+			# stay protected briefly after landing too, not just mid-dash
+			var t := get_tree().create_timer(dodge_invuln_duration)
+			t.timeout.connect(func(): _set_invulnerable(false))
+		
+	)
+
+func _set_invulnerable(value: bool) -> void:
+	ServerManager.request_set_invulnerable.rpc_id(1, value)
+	
+func _resolve_kill_after_lunge() -> void:
+	# Whoever is inside the kill radar right now, at the lunge's landing spot, dies.
+	for t in kill_targets_in_range:
+		if is_instance_valid(t) and PlayerManager.is_player_alive(t.name.to_int()):
+			_send_kill_request(t)
+			break # remove this line if you want the dash to hit EVERYONE currently in range
+			
+func _send_kill_request(target: Node2D) -> void:
+	if not is_instance_valid(target):
+		return
+	var target_id := target.name.to_int()
+	if not PlayerManager.is_player_alive(target_id):
+		return
+
+	ServerManager.request_kill.rpc_id(1, target_id)

@@ -235,6 +235,9 @@ func _try_kill_player(killer_id: int, victim_id: int) -> void:
 	if PlayerManager.get_role(killer_id) != Enums.Role.IMPOSTOR:
 		push_warning("[ServerManager] Non-impostor %d tried to kill." % killer_id)
 		return
+	if PlayerManager.is_player_invulnerable(victim_id):
+		push_warning("[ServerManager] Victim %d is dodging (invulnerable), kill blocked." % victim_id)
+		return
 
 	# 2. Validate victim
 	if not PlayerManager.players_state.has(victim_id):
@@ -323,3 +326,12 @@ func _sync_task_progress(completed: int, total: int) -> void:
 		progress = float(completed) / float(total)
 	TaskManager.total_progress_updated.emit(progress)
 	print("[ServerManager] Synced global task progress: %d/%d (%.0f%%)" % [completed, total, progress * 100])
+
+@rpc("any_peer", "call_local", "reliable")
+func request_set_invulnerable(value: bool) -> void:
+	if not multiplayer.is_server():
+		return
+	var sender_id = multiplayer.get_remote_sender_id()
+	if sender_id == 0:
+		sender_id = multiplayer.get_unique_id()
+	PlayerManager.set_invulnerable(sender_id, value)
