@@ -13,7 +13,7 @@ signal local_role_updated(new_role: Enums.Role)
 signal players_state_updated
 
 signal local_kill_target_updated(target_id: int)
-
+signal local_kill_cooldown_updated(progress: float)
 
 # Local player's data (the player sitting in front of this screen)
 var local_player_data: Dictionary = {
@@ -151,6 +151,14 @@ func add_done_task(peer_id: int, task_id: String) -> bool:
 	players_state_updated.emit()
 	return true
 
+func set_invulnerable(id: int, value: bool) -> void:
+	if players_state.has(id):
+		players_state[id]["invulnerable"] = value
+
+func is_player_invulnerable(id: int) -> bool:
+	if players_state.has(id):
+		return players_state[id].get("invulnerable", false)
+	return false
 
 # ==========================================
 # --- GETTERS ---

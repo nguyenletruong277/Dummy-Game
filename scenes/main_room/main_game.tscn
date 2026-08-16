@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cv00vk5eka6eb" path="res://assets/UI/Imposter_Kill_Buttom.png" id="5_p0xfa"]
 [ext_resource type="Texture2D" uid="uid://cqx5qa83eio8g" path="res://assets/UI/Chicken.png" id="5_yoymf"]
 [ext_resource type="Script" uid="uid://cl0p38qhlg2r" path="res://scenes/main_room/kill_button.gd" id="6_fq35f"]
+[ext_resource type="Texture2D" uid="uid://c4covxqis4de7" path="res://assets/UI/dodge.png" id="8_6h4kh"]
+[ext_resource type="Script" uid="uid://csfpltb7pdixi" path="res://scenes/main_room/dodge_button.gd" id="9_2qaph"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ni6oh"]
 font_size = 40
@@ -126,3 +128,38 @@ text = "10"
 label_settings = SubResource("LabelSettings_ni6oh")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="UI/GameplayUI/KillButton" unique_id=1737855389]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DodgeButton" type="TextureButton" parent="UI/GameplayUI" unique_id=1214475234]
+offset_left = 987.0
+offset_top = 499.0
+offset_right = 1128.0
+offset_bottom = 634.0
+texture_normal = ExtResource("8_6h4kh")
+ignore_texture_size = true
+script = ExtResource("9_2qaph")
+
+[node name="CooldownTimer" type="Timer" parent="UI/GameplayUI/DodgeButton" unique_id=1963379918]
+wait_time = 3.0
+one_shot = true
+
+[node name="TimerLabel" type="Label" parent="UI/GameplayUI/DodgeButton" unique_id=1280768913]
+visible = false
+layout_mode = 0
+offset_left = -2.0
+offset_top = -7.0
+offset_right = 145.0
+offset_bottom = 120.0
+text = "10"
+label_settings = SubResource("LabelSettings_ni6oh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="UI/GameplayUI/DodgeButton" unique_id=1277483954]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

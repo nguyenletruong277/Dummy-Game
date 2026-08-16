@@ -77,5 +77,3 @@ res://
 │   └── 📂 waiting_room/                    # Pre-game waiting room screen
 │
 └── 📂 tests/                               # Internal test environments and prototyping scripts
-
-

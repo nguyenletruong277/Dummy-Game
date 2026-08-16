@@ -9,6 +9,7 @@ extends Node2D
 @onready var spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var role_icon = $UI/GameplayUI/RoleIcon
 @onready var kill_button = $UI/GameplayUI/KillButton
+@onready var dodge_button = $UI/GameplayUI/DodgeButton 
 const LOBBY_SCENE := preload("res://scenes/waiting_room/lobby_scene.tscn")
 const GAMEPLAY_SCENE := preload("res://scenes/gameplay_room/gameplay.tscn") 
 
@@ -111,6 +112,10 @@ func _on_local_role_updated(my_role: Enums.Role) -> void:
 	if kill_button.has_method("setup_role"):
 		kill_button.setup_role(my_role)
 	
+	# 1b. Update the Dodge Button visibility
+	if dodge_button.has_method("setup_role"):
+		dodge_button.setup_role(my_role)
+		
 	# 2. Update visuals based on the assigned role (IMAGE ONLY)
 	if my_role == Enums.Role.IMPOSTOR:
 		# Load the Impostor image

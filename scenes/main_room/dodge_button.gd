@@ -5,23 +5,18 @@ extends TextureButton
 @export var dash_radius: float = 40.0
 @export var dash_length: float = 10.0
 @export var dash_width: float = 4.0
-@export var color_active: Color = Color(1, 0, 0)
+@export var color_active: Color = Color(0, 1, 1) # cyan, to visually distinguish from kill's red ring
 @export var color_inactive: Color = Color(0.3, 0.3, 0.3, 0.5)
-const COOLDOWN_DURATION := 3.0
+const COOLDOWN_DURATION := 8.0
 
-var current_target_id: int = -1
 var my_role: Enums.Role = Enums.Role.CREWMATE
 var is_on_cooldown: bool = false
 
-@onready var cooldown_timer = $CooldownTimer # Ensure you have created a Timer Node with this name
-@onready var time_label = $TimerLabel # Reference to the Label that displays the countdown seconds
+@onready var cooldown_timer = $CooldownTimer
+@onready var time_label = $TimerLabel
 
 func _ready():
-	# Listen for the local kill target update signal
-	PlayerManager.local_kill_target_updated.connect(_on_kill_target_updated)
-	
-	# Connect the cooldown timer timeout signal
-	pressed.connect(_on_pressed)
+	pressed.connect(_on_pressed) # connect in code — don't rely on editor wiring
 	if cooldown_timer:
 		cooldown_timer.timeout.connect(_on_timer_timeout)
 	PlayerManager.players_state_updated.connect(_check_alive_status) # add this
@@ -29,71 +24,58 @@ func _ready():
 
 func setup_role(player_role: Enums.Role):
 	my_role = player_role
-	if my_role == Enums.Role.IMPOSTOR:
+	if my_role != Enums.Role.IMPOSTOR:
 		show()
-		current_target_id = -1
-		start_cooldown() # Impostors usually start with the cooldown active
 	else:
 		hide()
 
-func _on_kill_target_updated(target_id: int):
-	current_target_id = target_id
-	_update_button_visuals()
-
-# Update the visual state (bright/dark) of the button
 func _update_button_visuals():
 	if is_on_cooldown:
-		self_modulate = Color(0.3, 0.3, 0.3, 1.0) # On cooldown -> Darkened
+		self_modulate = Color(0.3, 0.3, 0.3, 1.0)
 		disabled = true
-	#elif current_target_id != -1:
-		#self_modulate = Color.WHITE # Target available -> Bright/Default color
-		#disabled = false
 	else:
-		self_modulate = Color.WHITE # No target -> Darkened
+		self_modulate = Color.WHITE
 		disabled = false
 
 func _unhandled_input(event):
 	if not visible or is_on_cooldown:
 		return
 	if event is InputEventKey and event.keycode == KEY_SPACE and event.pressed and not event.echo:
-		_execute_kill()
+		_execute_dodge()
 
 func _on_pressed():
 	if is_on_cooldown:
 		return
-	_execute_kill()
+	_execute_dodge()
 
-func _execute_kill():
-	print(">>> [KILL BUTTON] Killed target ID: ", current_target_id)
-	
-	# Send kill request to the Server (Call request_kill in ServerManager)
+func _execute_dodge():
+	print(">>> [DODGE BUTTON] Dodging")
+
 	for p in get_tree().get_nodes_in_group("players"):
-		if p.is_multiplayer_authority() and p.has_method("try_kill"):
-			p.try_kill()
+		if p.is_multiplayer_authority() and p.has_method("try_dodge"):
+			p.try_dodge()
 			break
-		
-	# Start the cooldown timer
+
 	start_cooldown()
 
 func start_cooldown():
 	is_on_cooldown = true
 	_update_button_visuals()
 	if cooldown_timer:
-		cooldown_timer.start(Constants.KILL_COOLDOWN) # 10 seconds cooldown duration
+		cooldown_timer.start(COOLDOWN_DURATION)
 
 func _on_timer_timeout():
 	is_on_cooldown = false
 	_update_button_visuals()
 
 func _process(_delta):
-	# Update the Label to display remaining cooldown seconds
 	if is_on_cooldown and time_label:
 		time_label.show()
 		time_label.text = str(int(ceil(cooldown_timer.time_left)))
 	elif time_label:
 		time_label.hide()
 	queue_redraw()
-	
+
 func _draw() -> void:
 	if not is_on_cooldown or not cooldown_timer:
 		return

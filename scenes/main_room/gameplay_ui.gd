@@ -58,4 +58,3 @@ func _refresh() -> void:
 func _on_progress_updated(progress: float) -> void:
 	progress_bar.value = clampf(progress, 0.0, 1.0)
 	print("[GameplayUI] Global progress bar updated: ", progress * 100, "%")
-
