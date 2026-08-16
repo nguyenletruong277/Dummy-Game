@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://c8k2n5j7wmxr1"]
+
+[ext_resource type="Script" path="res://entities/tasks/minigames/cinema/task_sorting_disks.gd" id="1_sd01"]
+
+[node name="TaskSortingDisks" type="Control" unique_id=583762675]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sd01")
+metadata/_custom_type_script = "uid://bw6d0j2u4wcqo"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="PickDiskButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Nhặt đĩa"
+
+[node name="SortButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Sắp xếp theo thể loại"
+
+[node name="PlaceButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Đặt lên kệ"
+
+[node name="CancelButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Đóng/Hủy"
